@@ -1,30 +1,30 @@
 use crate::{
-    masm::{Op, SourceItem},
+    masm::{Block, BlockKey, Op, SourceBlocks},
     trace::Trace,
 };
 
-pub(crate) fn parse_trace(input: &str) -> anyhow::Result<(Vec<SourceItem>, Vec<Trace>)> {
-    trace_parser::parse(input).map_err(|err| {
+pub(crate) fn parse_trace(input: &str) -> anyhow::Result<(SourceBlocks, Vec<Trace>)> {
+    let mut blocks = SourceBlocks::default();
+    let trace = trace_parser::parse(input, &mut blocks).map_err(|err| {
         let l = err.location.offset;
         anyhow::anyhow!("{err}\nFound: {}...", &input[l..l + 20])
-    })
+    })?;
+
+    Ok((blocks, trace))
 }
 
 peg::parser! {
     grammar trace_parser() for str {
-        pub rule parse() -> (Vec<SourceItem>, Vec<Trace>)
-            = _ srcs:module()* between_garbage() traces:trace_item()* end_garbage() {
-                (srcs.into_iter().flatten().collect(), traces)
+        pub rule parse(blocks: &mut SourceBlocks) -> Vec<Trace>
+            = _ module(blocks)* between_garbage() traces:trace_item()* end_garbage() {
+                traces
             }
 
-        rule module() -> Vec<SourceItem>
-            = m:mod_comment() srcs:src_item()* {
-                srcs.into_iter().map(|src| {
-                    SourceItem {
-                        name: format!("{m}::{}", src.name),
-                        ops: src.ops,
-                    }
-                }).collect()
+        rule module(blocks: &mut SourceBlocks)
+            = m:mod_comment() keys:src_item(blocks)* {
+                for key in keys {
+                    blocks[key].prefix_module_name(&m);
+                }
             }
 
         rule mod_comment() -> String
@@ -32,18 +32,9 @@ peg::parser! {
                 sym.to_string()
             }
 
-        rule src_item() -> SourceItem
-            = export()
-            / proc()
-
-        rule export() -> SourceItem
-            = "export." name:symbol() ops:op()+ end() {
-                SourceItem { name, ops }
-            }
-
-        rule proc() -> SourceItem
-            = "proc." name:symbol() ops:op()+ end() {
-                SourceItem { name, ops }
+        rule src_item(blocks: &mut SourceBlocks) -> BlockKey
+            = ("export." / "proc.") name:symbol() ops:op(blocks)+ end() {
+                blocks.insert(Block::new(name, ops))
             }
 
         rule between_garbage()
@@ -52,10 +43,13 @@ peg::parser! {
         rule end_garbage()
             = "Stack Trace:" [_]*
 
-        rule op() -> Op
-            = cond_block()
-            / op:ident() arg:op_arg()? {
-                Op::Op(op, arg)
+        rule op(blocks: &mut SourceBlocks) -> Op
+            = cond_block(blocks)
+            / basic_op()
+
+        rule basic_op() -> Op
+            = opcode:ident() arg:op_arg()? {
+                Op::Op{ opcode, arg }
             }
 
         rule op_arg() -> String
@@ -68,9 +62,11 @@ peg::parser! {
                 str.to_string()
             }
 
-        rule cond_block() -> Op
-            = "if.true" _ tops:op()* "else" _ fops:op()* end() {
-                Op::Conditional(tops, fops)
+        rule cond_block(blocks: &mut SourceBlocks) -> Op
+            = "if.true" _ tops:op(blocks)* "else" _ fops:op(blocks)* end() {
+                let tops_key = blocks.insert(Block::bare(tops));
+                let fops_key = blocks.insert(Block::bare(fops));
+                Op::Conditional(tops_key, fops_key)
             }
 
         rule keyword()
@@ -78,8 +74,8 @@ peg::parser! {
 
         rule trace_item() -> Trace
             = func:trace_in() exe:trace_executed() stack:trace_stack() step_stack()? {
-                let (masm_op, op, cycle, total) = exe;
-                Trace { func, masm_op, op, cycle, total, stack }
+                let (_masm_op, op, cycle, total) = exe;
+                Trace { func, op, cycle, total, stack }
             }
 
         rule trace_in() -> String
@@ -94,7 +90,7 @@ peg::parser! {
             }
 
         rule trace_ops() -> (String, Op)
-            = "`" masm_op:$((!"`" [_])*)  "`" _ "of" _ "`" op:op() "`" _ {
+            = "`" masm_op:$((!"`" [_])*)  "`" _ "of" _ "`" op:basic_op() "`" _ {
                 (masm_op.to_string(), op)
             }
 
