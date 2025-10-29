@@ -11,7 +11,7 @@ use clap::Parser;
 struct Cli {
     path: String,
 
-    #[arg(short, long, help("Full entry function symbol"))]
+    #[arg(short, long, help("Entry function symbol"))]
     entry_func: Option<String>,
 }
 
@@ -31,13 +31,13 @@ fn main() -> anyhow::Result<()> {
     let mut demangled_symbols = fxhash::FxHashMap::default();
     let mut trace_idx = 0;
 
-    srcs.set_entry(&trace, &cli.entry_func)?;
+    let entry_func = srcs.set_entry(&trace, &cli.entry_func)?;
 
     println!("ENTRY AT {}", srcs.get_src_func_name()?);
 
-    if let Some(entry_func) = &cli.entry_func {
+    if cli.entry_func.is_some() {
         // We need to skip along the trace until we hit the entry.
-        while &trace[trace_idx].func != entry_func {
+        while trace[trace_idx].func != entry_func {
             trace_idx += 1;
         }
     }
@@ -196,6 +196,7 @@ fn main() -> anyhow::Result<()> {
         }
     }
 
+    println!();
     println!("END OF TRACE");
 
     Ok(())

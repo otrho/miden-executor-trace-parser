@@ -36,6 +36,17 @@ impl SourceManager {
             .map(|(key, _)| key)
     }
 
+    pub(crate) fn fuzzy_find_block_key(&self, func: &str) -> Vec<masm::BlockKey> {
+        self.srcs
+            .iter()
+            .filter_map(|(key, block)| {
+                block
+                    .name()
+                    .and_then(|name| name.ends_with(func).then_some(key))
+            })
+            .collect()
+    }
+
     pub(crate) fn get_src_func_name(&self) -> anyhow::Result<&String> {
         // Default to the current block name.
         self.srcs[self.src_block_key]
@@ -102,18 +113,32 @@ impl SourceManager {
         &mut self,
         trace: &[trace::Trace],
         entry_func: &Option<String>,
-    ) -> anyhow::Result<()> {
-        self.src_block_key = if let Some(entry_func) = entry_func {
-            self.find_block_key(&entry_func).ok_or(anyhow::anyhow!(
-                "Failed to find requested entry function: {entry_func}"
-            ))
+    ) -> anyhow::Result<String> {
+        let block_key = if let Some(entry_func) = entry_func {
+            let entry_funcs = self.fuzzy_find_block_key(&entry_func);
+            match entry_funcs.len() {
+                0 => anyhow::bail!("Failed to find requested entry function: {entry_func}"),
+                1 => Ok(entry_funcs[0]),
+                _ => {
+                    let found_funcs_str = entry_funcs
+                        .iter()
+                        .filter_map(|key| self.srcs[*key].name())
+                        .cloned()
+                        .collect::<Vec<_>>()
+                        .join("\n  ");
+
+                    anyhow::bail!("Found multiple potential entry functions:\n  {found_funcs_str}")
+                }
+            }
         } else {
             self.get_entry_func_block_key(&trace).ok_or(anyhow::anyhow!(
                 "Failed to determine default entry function."
             ))
         }?;
 
-        Ok(())
+        // XXX: This could be re-thought.  A lot of re-fetching and cloning of strings going on.
+        self.src_block_key = block_key;
+        Ok(self.srcs[block_key].name().unwrap().clone())
     }
 
     fn get_entry_func_block_key(&self, trace: &[trace::Trace]) -> Option<masm::BlockKey> {

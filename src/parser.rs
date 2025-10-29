@@ -16,7 +16,7 @@ pub(crate) fn parse_trace(input: &str) -> anyhow::Result<(SourceBlocks, Vec<Trac
 peg::parser! {
     grammar trace_parser() for str {
         pub rule parse(blocks: &mut SourceBlocks) -> Vec<Trace>
-            = _ module(blocks)* between_garbage() traces:trace_item()* end_garbage() {
+            = begin_garbage() module(blocks)* between_garbage() traces:trace_item()* end_garbage() {
                 traces
             }
 
@@ -36,6 +36,9 @@ peg::parser! {
             = ("export." / "proc.") name:symbol() ops:op(blocks)+ end() {
                 blocks.insert(Block::new(name, ops))
             }
+
+        rule begin_garbage()
+            = (!("#" _ "mod") [_])*
 
         rule between_garbage()
             = "test" (!"FAILED" [_])* "FAILED" _ (!trace_marker() [_])*
