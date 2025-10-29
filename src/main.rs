@@ -15,6 +15,12 @@ struct Cli {
     entry_func: Option<String>,
 }
 
+const SPACES: &'static str = "                                                                                                    ";
+
+fn spaces(count: usize) -> &'static str {
+    &SPACES[0..count]
+}
+
 fn main() -> anyhow::Result<()> {
     let cli = Cli::parse();
 
@@ -39,22 +45,26 @@ fn main() -> anyhow::Result<()> {
     let mut prior_top_of_stack = [0, 0];
     let mut pending_trace_skip = false;
 
+    srcs.inc_indent();
+
     loop {
         if let Some(frame) = srcs.check_leave()? {
             match frame {
                 src_mgr::BlockType::Exec => {
-                    println!("  RETURN TO {}", srcs.get_src_func_name()?);
+                    println!("RETURN TO {} }}}}}}", srcs.get_src_func_name()?);
                     println!();
                 }
 
                 src_mgr::BlockType::TrueBlock => {
-                    println!("  end");
+                    srcs.dec_indent();
+                    println!("{}else", spaces(srcs.indent()));
+                    println!("{}(SKIPPING)", spaces(srcs.indent_next()));
+                    println!("{}end", spaces(srcs.indent()));
                 }
 
                 src_mgr::BlockType::FalseBlock => {
-                    println!("  else");
-                    println!("    (SKIPPING)");
-                    println!("  end");
+                    srcs.dec_indent();
+                    println!("{}end", spaces(srcs.indent()));
                 }
             }
 
@@ -112,7 +122,7 @@ fn main() -> anyhow::Result<()> {
 
         // Usually the op just matches; we'll assume it's all lined up.
         if src_op == op {
-            print_op(op, func, Some(stack));
+            print_op(op, func, Some(stack), srcs.indent())?;
 
             srcs.next_op();
             trace_idx += 1;
@@ -124,7 +134,7 @@ fn main() -> anyhow::Result<()> {
         match src_op {
             masm::Op::Op { opcode, arg } => {
                 if opcode == "exec" || opcode == "call" {
-                    print_op(&src_op, func, None);
+                    print_op(&src_op, func, None, srcs.indent())?;
 
                     let callee_func_name =
                         &arg.as_ref().expect("CALL/EXEC must have an argument")[2..];
@@ -133,18 +143,18 @@ fn main() -> anyhow::Result<()> {
                         // traced, or... not sure.
 
                         if final_sym_element(callee_func_name).starts_with("__") {
-                            println!("    (SKIPPING)");
+                            println!("{}(SKIPPING)", spaces(srcs.indent_next()));
 
                             srcs.next_op();
                         } else {
                             srcs.enter(src_mgr::BlockType::Exec, callee_block_key);
 
                             println!();
-                            println!("ENTERING {}", srcs.get_src_func_name()?);
+                            println!("ENTERING {} {{{{{{", srcs.get_src_func_name()?);
                         }
                     } else {
                         // Skip the unknown (probably intrinsic) function until it returns.
-                        println!("    (SKIPPING)");
+                        println!("{}(SKIPPING)", spaces(srcs.indent_next()));
 
                         // We could be at the end of a function, so the function we're actually
                         // skipping to is not this one, but the caller.  So we need to know that
@@ -156,27 +166,31 @@ fn main() -> anyhow::Result<()> {
                     }
                 } else {
                     println!();
-                    //println!("src func: {}", srcs[src_item_idx].name);
-                    //println!("  pc: {pc}");
+                    println!("src func: {}", srcs.get_src_func_name()?);
                     println!("  src op {src_op:?}");
                     println!("trace func: {func}");
-                    println!("  idx: {trace_idx}");
                     println!("  op {op:?}");
-                    todo!()
+
+                    anyhow::bail!("Mismatched operations!");
                 }
             }
 
             masm::Op::Conditional(t_block_key, f_block_key) => {
                 let cond = prior_top_of_stack[1] != 0;
 
-                println!("  if.true");
-                if !cond {
-                    println!("    (SKIPPING)");
-                    println!("  else");
+                let t_block_key = *t_block_key;
+                let f_block_key = *f_block_key;
 
-                    srcs.enter(src_mgr::BlockType::FalseBlock, *f_block_key);
+                println!("{}if.true", spaces(srcs.indent()));
+                if !cond {
+                    println!("{}(SKIPPING)", spaces(srcs.indent_next()));
+                    println!("{}else", spaces(srcs.indent()));
+
+                    srcs.inc_indent();
+                    srcs.enter(src_mgr::BlockType::FalseBlock, f_block_key);
                 } else {
-                    srcs.enter(src_mgr::BlockType::TrueBlock, *t_block_key);
+                    srcs.inc_indent();
+                    srcs.enter(src_mgr::BlockType::TrueBlock, t_block_key);
                 }
             }
         }
@@ -187,19 +201,36 @@ fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-fn print_op(op: &masm::Op, func: &str, stack: Option<&[u64]>) {
+fn print_op(op: &masm::Op, func: &str, stack: Option<&[u64]>, indent: usize) -> anyhow::Result<()> {
+    use std::fmt::Write;
+
+    const STACK_INDENT_OFFS: usize = 40;
+
     let masm::Op::Op { opcode, arg } = op else {
         unreachable!("Unexpected non-regular op in {func} ({op:?})",);
     };
 
+    let mut out_str = String::default();
+
     // Print opcode.
-    print!("  {opcode}");
+    write!(out_str, "{}{opcode}", spaces(indent))?;
     if let Some(arg) = arg {
-        print!(".{arg}");
+        write!(out_str, ".{arg}")?;
     }
-    println!();
 
     if let Some(stack) = stack {
+        // Pad out to the stack.
+        let stack_pad = if out_str.len() >= STACK_INDENT_OFFS {
+            // Nah, put the stack on the next line.
+            println!("{out_str}");
+            out_str.clear();
+
+            STACK_INDENT_OFFS
+        } else {
+            STACK_INDENT_OFFS - out_str.len()
+        };
+        write!(out_str, "{}", spaces(stack_pad))?;
+
         // Print the stack.  Find the index to the last non-zero value first.
         let nz_idx = stack
             .iter()
@@ -208,15 +239,26 @@ fn print_op(op: &masm::Op, func: &str, stack: Option<&[u64]>) {
             .unwrap_or(stack.len());
         let num_items_to_print = (stack.len() + 2 - nz_idx).min(stack.len());
 
-        print!("    [");
+        write!(out_str, "[")?;
         for idx in 0..num_items_to_print {
-            print!(" {}", stack[idx]);
+            let el = stack[idx];
+            if el < 256 {
+                // Decimal.
+                write!(out_str, " {el}")?;
+            } else {
+                // Hex.
+                write!(out_str, " {el:x}h")?;
+            }
         }
         if num_items_to_print < stack.len() {
-            print!(" ...");
+            write!(out_str, " ...")?;
         }
-        println!(" ]")
+        write!(out_str, " ]")?;
     }
+
+    println!("{out_str}");
+
+    Ok(())
 }
 
 fn final_sym_element(sym: &str) -> &str {

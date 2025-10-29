@@ -1,10 +1,13 @@
 use crate::{masm, trace};
 
+const INDENT_AMOUNT: usize = 4;
+
 pub(crate) struct SourceManager {
     srcs: masm::SourceBlocks,
     src_block_key: masm::BlockKey,
     pc: usize,
     call_stack: Vec<(BlockType, masm::BlockKey, usize)>,
+    indent: usize,
 }
 
 pub(crate) enum BlockType {
@@ -22,6 +25,7 @@ impl SourceManager {
             src_block_key: masm::BlockKey::default(),
             pc: 0,
             call_stack: Vec::default(),
+            indent: 0,
         }
     }
 
@@ -52,6 +56,22 @@ impl SourceManager {
 
     pub(crate) fn next_op(&mut self) {
         self.pc += 1;
+    }
+
+    pub(crate) fn indent(&self) -> usize {
+        self.indent
+    }
+
+    pub(crate) fn indent_next(&self) -> usize {
+        self.indent + INDENT_AMOUNT
+    }
+
+    pub(crate) fn inc_indent(&mut self) {
+        self.indent += INDENT_AMOUNT;
+    }
+
+    pub(crate) fn dec_indent(&mut self) {
+        self.indent -= INDENT_AMOUNT;
     }
 
     pub(crate) fn enter(&mut self, frame: BlockType, target_block_key: masm::BlockKey) {
