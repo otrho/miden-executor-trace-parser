@@ -29,7 +29,11 @@ fn main() -> anyhow::Result<()> {
 
     let mut srcs = src_mgr::SourceManager::new(src_items);
     let mut demangled_symbols = fxhash::FxHashMap::default();
+    let mut mem_map = fxhash::FxHashMap::default();
     let mut trace_idx = 0;
+    let mut prior_top_of_stack = [0, 0];
+    let mut pending_trace_skip = false;
+    let mut pending_print_mem = None;
 
     let entry_func = srcs.set_entry(&trace, &cli.entry_func)?;
 
@@ -42,12 +46,10 @@ fn main() -> anyhow::Result<()> {
         }
     }
 
-    let mut prior_top_of_stack = [0, 0];
-    let mut pending_trace_skip = false;
-
     srcs.inc_indent();
 
     loop {
+        // Synchronise the src mgr with the trace in the case of returning from blocks first.
         if let Some(frame) = srcs.check_leave()? {
             match frame {
                 src_mgr::BlockType::Exec => {
@@ -75,6 +77,7 @@ fn main() -> anyhow::Result<()> {
             // We need to skip the trace along until it arrives at the current function.
             let ret_func_str = srcs.get_src_func_name()?;
             loop {
+                perform_mem_io(&mut mem_map, trace.get(trace_idx), trace.get(trace_idx - 1));
                 trace_idx += 1;
 
                 let demangled_sym = demangled_symbols
@@ -88,6 +91,13 @@ fn main() -> anyhow::Result<()> {
 
             pending_trace_skip = false;
         }
+
+        if let Some(addr) = pending_print_mem {
+            print_mem(&mem_map, addr);
+            pending_print_mem = None;
+        }
+
+        perform_mem_io(&mut mem_map, trace.get(trace_idx), trace.get(trace_idx - 1));
 
         let Some(trace::Trace {
             func,
@@ -124,6 +134,11 @@ fn main() -> anyhow::Result<()> {
         if src_op == op {
             print_op(op, func, Some(stack), srcs.indent())?;
 
+            pending_print_mem = matches!(op, masm::Op::Op {
+                    opcode, ..
+                } if opcode == "mem_load" || opcode == "mem_store")
+            .then_some(prior_top_of_stack[1]);
+
             srcs.next_op();
             trace_idx += 1;
 
@@ -138,11 +153,22 @@ fn main() -> anyhow::Result<()> {
 
                     let callee_func_name =
                         &arg.as_ref().expect("CALL/EXEC must have an argument")[2..];
+
+                    // Take note of memeory I/O.
+                    pending_print_mem = callee_func_name
+                        .starts_with("intrinsics::mem::")
+                        .then_some(prior_top_of_stack[1]);
+
                     if let Some(callee_block_key) = srcs.find_block_key(callee_func_name) {
                         // It seems maybe functions beginning with '__' are not actually run, or
                         // traced, or... not sure.
 
-                        if final_sym_element(callee_func_name).starts_with("__") {
+                        if callee_func_name
+                            .split("::")
+                            .last()
+                            .unwrap()
+                            .starts_with("__")
+                        {
                             println!("{}(SKIPPING)", spaces(srcs.indent_next()));
 
                             srcs.next_op();
@@ -200,6 +226,53 @@ fn main() -> anyhow::Result<()> {
     println!("END OF TRACE");
 
     Ok(())
+}
+
+fn perform_mem_io(
+    mem_map: &mut fxhash::FxHashMap<u64, u64>,
+    mem_op_trace: Option<&trace::Trace>,
+    prior_trace: Option<&trace::Trace>,
+) {
+    let Some(mem_op_trace) = mem_op_trace else {
+        return;
+    };
+
+    let Some(prior_trace) = prior_trace else {
+        return;
+    };
+
+    if mem_op_trace.cycle != 1 {
+        return;
+    };
+
+    if let masm::Op::Op { opcode, arg } = &mem_op_trace.op {
+        if opcode == "mem_load" {
+            let addr = arg
+                .as_ref()
+                .and_then(|a_str| a_str.parse::<u64>().ok())
+                .unwrap_or(prior_trace.stack[0]);
+            let loaded_val = mem_op_trace.stack[0];
+
+            if let Some(mem_val) = mem_map.get(&addr) {
+                if *mem_val != loaded_val {
+                    println!("WARNING: memory mismatch at addr {addr:x}:");
+                    println!("  Expecting {loaded_val:x}, found {mem_val:x}");
+                }
+            } else {
+                mem_map.insert(addr, loaded_val);
+            }
+        }
+
+        if opcode == "mem_store" {
+            let (addr, val) = if let Some(addr_str) = arg {
+                (addr_str.parse::<u64>().unwrap(), prior_trace.stack[0])
+            } else {
+                (prior_trace.stack[0], prior_trace.stack[1])
+            };
+
+            mem_map.insert(addr, val);
+        }
+    }
 }
 
 fn print_op(op: &masm::Op, func: &str, stack: Option<&[u64]>, indent: usize) -> anyhow::Result<()> {
@@ -262,7 +335,20 @@ fn print_op(op: &masm::Op, func: &str, stack: Option<&[u64]>, indent: usize) -> 
     Ok(())
 }
 
-fn final_sym_element(sym: &str) -> &str {
-    // Find the substring following the final "::" separator.
-    sym.split("::").last().unwrap()
+fn print_mem(mem_map: &fxhash::FxHashMap<u64, u64>, addr: u64) {
+    // Print the 4 words surrounding the address.
+    let base_addr = addr - (addr % 4);
+    println!();
+    print!("| {base_addr:0>8x}: ");
+    for addr_idx in base_addr..base_addr + 4 {
+        if let Some(mem_val) = mem_map.get(&addr_idx) {
+            print!(" {mem_val:0>16x}");
+        } else {
+            print!("  ????????????????")
+        }
+    }
+    println!(" |");
+    println!();
 }
+
+// vim:fdl=3
