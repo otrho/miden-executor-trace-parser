@@ -6,6 +6,8 @@ edition = "2024"
 [dependencies]
 anyhow = "1.0.100"
 clap = { version = "4.5.50", features = ["derive"] }
+expect-test = "1.5.1"
 fxhash = "0.2.1"
 peg = "0.8.5"
 slotmap = "1.0.7"
+test_bin = "0.5.0"

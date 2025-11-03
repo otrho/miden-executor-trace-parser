@@ -1,0 +1,1362 @@
+ENTRY AT miden:base/note-script@1.0.0::cm_types_script::miden:base/note-script@1.0.0#run
+    drop                                [ 0 0 ... ]
+    drop                                [ 0 0 ... ]
+    drop                                [ 0 0 ... ]
+    drop                                [ 0 0 ... ]
+    push.1114144                        [ 110020h 0 0 ... ]
+    u32divmod.4                         [ 0 44008h 0 0 ... ]
+    swap.1                              [ 44008h 0 0 ... ]
+    nop                                 [ 44008h 0 0 ... ]
+    exec.::intrinsics::mem::load_sw
+        (SKIPPING)
+
+| 00044008:  0000000000100000  ????????????????  ????????????????  ???????????????? |
+
+    nop                                 [ 100000h 0 0 ... ]
+    push.16                             [ 16 100000h 0 0 ... ]
+    u32wrapping_sub                     [ ffff0h 0 0 ... ]
+    push.1114144                        [ 110020h ffff0h 0 0 ... ]
+    dup.1                               [ ffff0h 110020h ffff0h 0 0 ... ]
+    swap.1                              [ 110020h ffff0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 44008h ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ 44008h 0 ffff0h ffff0h 0 0 ... ]
+    nop                                 [ 44008h 0 ffff0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::store_sw
+        (SKIPPING)
+
+| 00044008:  00000000000ffff0  ????????????????  ????????????????  ???????????????? |
+
+    nop                                 [ ffff0h 0 0 ... ]
+    nop                                 [ ffff0h 0 0 ... ]
+    exec.::miden:base/note-script@1.0.0::cm_types_script::wit_bindgen::rt::run_ctors_once
+
+ENTERING miden:base/note-script@1.0.0::cm_types_script::wit_bindgen::rt::run_ctors_once {{{
+    push.1114148                        [ 110024h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 44009h ffff0h 0 0 ... ]
+    swap.1                              [ 44009h 0 ffff0h 0 0 ... ]
+    nop                                 [ 44009h 0 ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::load_sw
+        (SKIPPING)
+
+| 00044008:  00000000000ffff0 0000000000000000  ????????????????  ???????????????? |
+
+    nop                                 [ 0 ffff0h 0 0 ... ]
+    push.1048588                        [ 10000ch 0 ffff0h 0 0 ... ]
+    u32wrapping_add                     [ 10000ch ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 40003h ffff0h 0 0 ... ]
+    swap.1                              [ 40003h 0 ffff0h 0 0 ... ]
+    swap.1                              [ 0 40003h ffff0h 0 0 ... ]
+    dup.1                               [ 40003h 0 40003h ffff0h 0 0 ... ]
+    mem_load                            [ 0 0 40003h ffff0h 0 0 ... ]
+
+| 00040000:   ????????????????  ????????????????  ???????????????? 0000000000000000 |
+
+    swap.1                              [ 0 0 40003h ffff0h 0 0 ... ]
+    push.8                              [ 8 0 0 40003h ffff0h 0 0 ... ]
+    u32wrapping_mul                     [ 0 0 40003h ffff0h 0 0 ... ]
+    u32shr                              [ 0 40003h ffff0h 0 0 ... ]
+    swap.1                              [ 40003h 0 ffff0h 0 0 ... ]
+    drop                                [ 0 ffff0h 0 0 ... ]
+    push.255                            [ 255 0 ffff0h 0 0 ... ]
+    u32and                              [ 0 ffff0h 0 0 ... ]
+    push.0                              [ 0 0 ffff0h 0 0 ... ]
+    swap.1                              [ 0 0 ffff0h 0 0 ... ]
+    neq                                 [ 0 ffff0h 0 0 ... ]
+    if.true
+        (SKIPPING)
+    else
+        push.1114148                    [ 110024h ffff0h 0 0 ... ]
+        u32divmod.4                     [ 0 44009h ffff0h 0 0 ... ]
+        swap.1                          [ 44009h 0 ffff0h 0 0 ... ]
+        nop                             [ 44009h 0 ffff0h 0 0 ... ]
+        exec.::intrinsics::mem::load_sw
+            (SKIPPING)
+
+| 00044008:  00000000000ffff0 0000000000000000  ????????????????  ???????????????? |
+
+        nop                             [ 0 ffff0h 0 0 ... ]
+        nop                             [ 0 ffff0h 0 0 ... ]
+        exec.::miden:base/note-script@1.0.0::cm_types_script::__wasm_call_ctors
+            (SKIPPING)
+        nop                             [ 0 ffff0h 0 0 ... ]
+        push.1                          [ 1 0 ffff0h 0 0 ... ]
+        push.1048588                    [ 10000ch 1 0 ffff0h 0 0 ... ]
+        movup.2                         [ 0 10000ch 1 ffff0h 0 0 ... ]
+        u32wrapping_add                 [ 10000ch 1 ffff0h 0 0 ... ]
+        u32divmod.4                     [ 0 40003h 1 ffff0h 0 0 ... ]
+        swap.1                          [ 40003h 0 1 ffff0h 0 0 ... ]
+        dup.0                           [ 40003h 40003h 0 1 ffff0h 0 0 ... ]
+        mem_load                        [ 0 40003h 0 1 ffff0h 0 0 ... ]
+
+| 00040000:   ????????????????  ????????????????  ???????????????? 0000000000000000 |
+
+        dup.2                           [ 0 0 40003h 0 1 ffff0h 0 0 ... ]
+        push.8                          [ 8 0 0 40003h 0 1 ffff0h 0 0 ... ]
+        u32wrapping_mul                 [ 0 0 40003h 0 1 ffff0h 0 0 ... ]
+        push.255                        [ 255 0 0 40003h 0 1 ffff0h 0 0 ... ]
+        swap.1                          [ 0 255 0 40003h 0 1 ffff0h 0 0 ... ]
+        u32shl                          [ 0 255 0 40003h 0 1 ffff0h 0 0 ... ]
+        u32not                          [ ffffff00h 0 40003h 0 1 ffff0h 0 0 ... ]
+        swap.1                          [ 0 ffffff00h 40003h 0 1 ffff0h 0 0 ... ]
+        u32and                          [ 0 40003h 0 1 ffff0h 0 0 ... ]
+        movup.3                         [ 1 0 40003h 0 ffff0h 0 0 ... ]
+        movup.3                         [ 0 1 0 40003h ffff0h 0 0 ... ]
+        push.8                          [ 8 0 1 0 40003h ffff0h 0 0 ... ]
+        u32wrapping_mul                 [ 0 1 0 40003h ffff0h 0 0 ... ]
+        u32shl                          [ 1 0 40003h ffff0h 0 0 ... ]
+        u32or                           [ 1 0 40003h ffff0h 0 0 ... ]
+        swap.1                          [ 40003h 1 ffff0h 0 0 ... ]
+        mem_store                       [ ffff0h 0 0 ... ]
+    end
+RETURN TO miden:base/note-script@1.0.0::cm_types_script::miden:base/note-script@1.0.0#run }}}
+
+
+| 00040000:   ????????????????  ????????????????  ???????????????? 0000000000000001 |
+
+    nop                                 [ ffff0h 0 0 ... ]
+    dup.0                               [ ffff0h ffff0h 0 0 ... ]
+    push.4                              [ 4 ffff0h ffff0h 0 0 ... ]
+    dup.1                               [ ffff0h 4 ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ 4 ffff0h ffff0h ffff0h 0 0 ... ]
+    u32mod                              [ 0 ffff0h ffff0h 0 0 ... ]
+    u32assert                           [ 0 ffff0h ffff0h 0 0 ... ]
+    assertz                             [ ffff0h ffff0h 0 0 ... ]
+    push.0                              [ 0 ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ ffff0h 0 ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 3fffch 0 ffff0h 0 0 ... ]
+    swap.1                              [ 3fffch 0 0 ffff0h 0 0 ... ]
+    nop                                 [ 3fffch 0 0 ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::store_sw
+        (SKIPPING)
+
+| 0003fffc:  0000000000000000  ????????????????  ????????????????  ???????????????? |
+
+    nop                                 [ ffff0h 0 0 ... ]
+    push.8                              [ 8 ffff0h 0 0 ... ]
+    dup.1                               [ ffff0h 8 ffff0h 0 0 ... ]
+    add                                 [ ffff8h ffff0h 0 0 ... ]
+    u32assert                           [ ffff8h ffff0h 0 0 ... ]
+    push.8                              [ 8 ffff8h ffff0h 0 0 ... ]
+    dup.1                               [ ffff8h 8 ffff8h ffff0h 0 0 ... ]
+    swap.1                              [ 8 ffff8h ffff8h ffff0h 0 0 ... ]
+    u32mod                              [ 0 ffff8h ffff0h 0 0 ... ]
+    u32assert                           [ 0 ffff8h ffff0h 0 0 ... ]
+    assertz                             [ ffff8h ffff0h 0 0 ... ]
+    push.33                             [ 33 ffff8h ffff0h 0 0 ... ]
+    push.0                              [ 0 33 ffff8h ffff0h 0 0 ... ]
+    movup.2                             [ ffff8h 0 33 ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 3fffeh 0 33 ffff0h 0 0 ... ]
+    swap.1                              [ 3fffeh 0 0 33 ffff0h 0 0 ... ]
+    nop                                 [ 3fffeh 0 0 33 ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::store_dw
+        (SKIPPING)
+
+| 0003fffc:  0000000000000000  ???????????????? 0000000000000000 0000000000000021 |
+
+    nop                                 [ ffff0h 0 0 ... ]
+    dup.0                               [ ffff0h ffff0h 0 0 ... ]
+    nop                                 [ ffff0h ffff0h 0 0 ... ]
+    exec.::miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small
+
+ENTERING miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small {{{
+    push.1114144                        [ 110020h ffff0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 44008h ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ 44008h 0 ffff0h ffff0h 0 0 ... ]
+    nop                                 [ 44008h 0 ffff0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::load_sw
+        (SKIPPING)
+
+| 00044008:  00000000000ffff0 0000000000000000  ????????????????  ???????????????? |
+
+    nop                                 [ ffff0h ffff0h ffff0h 0 0 ... ]
+    push.16                             [ 16 ffff0h ffff0h ffff0h 0 0 ... ]
+    u32wrapping_sub                     [ fffe0h ffff0h ffff0h 0 0 ... ]
+    push.1114144                        [ 110020h fffe0h ffff0h ffff0h 0 0 ... ]
+    dup.1                               [ fffe0h 110020h fffe0h ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ 110020h fffe0h fffe0h ffff0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 44008h fffe0h fffe0h ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ 44008h 0 fffe0h fffe0h ffff0h ffff0h 0 0 ... ]
+    nop                                 [ 44008h 0 fffe0h fffe0h ffff0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::store_sw
+        (SKIPPING)
+
+| 00044008:  00000000000fffe0 0000000000000000  ????????????????  ???????????????? |
+
+    nop                                 [ fffe0h ffff0h ffff0h 0 0 ... ]
+    dup.1                               [ ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+    push.4                              [ 4 ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+    dup.1                               [ ffff0h 4 ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ 4 ffff0h ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+    u32mod                              [ 0 ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+    u32assert                           [ 0 ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+    assertz                             [ ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 3fffch fffe0h ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffch 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    nop                                 [ 3fffch 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::load_sw
+        (SKIPPING)
+
+| 0003fffc:  0000000000000000  ???????????????? 0000000000000000 0000000000000021 |
+
+    nop                                 [ 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    push.8                              [ 8 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    dup.3                               [ ffff0h 8 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    add                                 [ ffff8h 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    u32assert                           [ ffff8h 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    push.8                              [ 8 ffff8h 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    dup.1                               [ ffff8h 8 ffff8h 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ 8 ffff8h ffff8h 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    u32mod                              [ 0 ffff8h 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    u32assert                           [ 0 ffff8h 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    assertz                             [ ffff8h 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 3fffeh 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffeh 0 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    nop                                 [ 3fffeh 0 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::load_dw
+        (SKIPPING)
+
+| 0003fffc:  0000000000000000  ???????????????? 0000000000000000 0000000000000021 |
+
+    nop                                 [ 0 33 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    push.4                              [ 4 0 33 0 fffe0h ffff0h ffff0h 0 0 ... ]
+    movup.5                             [ ffff0h 4 0 33 0 fffe0h ffff0h 0 0 ... ]
+    add                                 [ ffff4h 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ ffff4h 0 33 0 fffe0h ffff0h 0 0 ... ]
+    push.4                              [ 4 ffff4h 0 33 0 fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ ffff4h 4 ffff4h 0 33 0 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 4 ffff4h ffff4h 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32mod                              [ 0 ffff4h 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ 0 ffff4h 0 33 0 fffe0h ffff0h 0 0 ... ]
+    assertz                             [ ffff4h 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 3fffdh 0 33 0 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffdh 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    nop                                 [ 3fffdh 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::load_sw
+        (SKIPPING)
+
+| 0003fffc:  0000000000000000 0000000000000000 0000000000000000 0000000000000021 |
+
+    nop                                 [ 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    push.12                             [ 12 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    dup.5                               [ fffe0h 12 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    add                                 [ fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    push.4                              [ 4 fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ fffech 4 fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 4 fffech fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32mod                              [ 0 fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ 0 fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    assertz                             [ fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ fffech 0 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 3fffbh 0 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffbh 0 0 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    nop                                 [ 3fffbh 0 0 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::store_sw
+        (SKIPPING)
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000000000 |
+
+    nop                                 [ 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    push.12                             [ 12 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    dup.5                               [ fffe0h 12 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32wrapping_add                     [ fffech 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    dup.0                               [ 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    push.2147483648                     [ 80000000h 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    u32and                              [ 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    eq.2147483648                       [ 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    push.4294967295                     [ ffffffffh 0 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    movup.2                             [ 0 ffffffffh 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    cdrop                               [ 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    dup.6                               [ 0 0 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    neq                                 [ 0 0 0 fffech 0 33 0 fffe0h ffff0h 0 0 ... ]
+    movup.3                             [ fffech 0 0 0 0 33 0 fffe0h ffff0h 0 0 ... ]
+    movdn.5                             [ 0 0 0 0 33 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movup.4                             [ 33 0 0 0 0 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movup.4                             [ 0 33 0 0 0 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movdn.4                             [ 33 0 0 0 0 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movdn.4                             [ 0 0 0 0 33 fffech 0 fffe0h ffff0h 0 0 ... ]
+    dup.0                               [ 0 0 0 0 0 33 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movdn.5                             [ 0 0 0 0 33 0 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movup.3                             [ 0 0 0 0 33 0 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movup.2                             [ 0 0 0 0 33 0 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movup.5                             [ 0 0 0 0 0 33 fffech 0 fffe0h ffff0h 0 0 ... ]
+    cdrop                               [ 0 0 0 33 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movdn.3                             [ 0 0 33 0 fffech 0 fffe0h ffff0h 0 0 ... ]
+    cdrop                               [ 33 0 fffech 0 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 0 33 fffech 0 fffe0h ffff0h 0 0 ... ]
+    movup.3                             [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    nop                                 [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    exec.::miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small::wit_import2
+
+ENTERING miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small::wit_import2 {{{
+    nop                                 [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    call.::miden:cm-types/cm-types@0.1.0::func-result-small
+
+ENTERING miden:cm-types/cm-types@0.1.0::func-result-small {{{
+    exec.::miden:cm-types/cm-types@0.1.0::init
+
+ENTERING miden:cm-types/cm-types@0.1.0::init {{{
+    push.1179648                        [ 120000h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::heap_init
+        (SKIPPING)
+
+| 00120000:   ????????????????  ????????????????  ????????????????  ???????????????? |
+
+    push.[7151114677254663075,2479465529008640040,14770310489219921016,265821343982190061]
+                                        [ ccfaaf222c2df478h 2268d4c30962d028h 633ddce925d8aba3h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    adv.push_mapval                     [ 3b0631a9dc67dedh ccfaaf222c2df478h 2268d4c30962d028h 633ddce925d8aba3h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    push.262144                         [ 40000h 3b0631a9dc67dedh ccfaaf222c2df478h 2268d4c30962d028h 633ddce925d8aba3h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    push.2                              [ 2 40000h 3b0631a9dc67dedh ccfaaf222c2df478h 2268d4c30962d028h 633ddce925d8aba3h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    exec.::std::mem::pipe_preimage_to_memory
+        (SKIPPING)
+    drop                                [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    push.1048576                        [ 100000h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ 100000h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    mem_store.278536                    [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+
+| 00100000:   ????????????????  ????????????????  ????????????????  ???????????????? |
+
+    push.0                              [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    mem_store.278537                    [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+RETURN TO miden:cm-types/cm-types@0.1.0::func-result-small }}}
+
+
+| 00000000:   ????????????????  ????????????????  ????????????????  ???????????????? |
+
+    nop                                 [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    exec.::miden:cm-types/cm-types@0.1.0::cm_types::miden:cm-types/cm-types@0.1.0#func-result-small
+
+ENTERING miden:cm-types/cm-types@0.1.0::cm_types::miden:cm-types/cm-types@0.1.0#func-result-small {{{
+    nop                                 [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    exec.::miden:cm-types/cm-types@0.1.0::cm_types::wit_bindgen::rt::run_ctors_once
+
+ENTERING miden:cm-types/cm-types@0.1.0::cm_types::wit_bindgen::rt::run_ctors_once {{{
+    push.1114148                        [ 110024h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 44009h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 44009h 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    nop                                 [ 44009h 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::load_sw
+        (SKIPPING)
+
+| 00044008:  0000000000100000 0000000000000000  ????????????????  ???????????????? |
+
+    nop                                 [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    push.1048632                        [ 100038h 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    u32wrapping_add                     [ 100038h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 4000eh 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ 4000eh 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    mem_load                            [ 0 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+
+| 0004000c:   ????????????????  ???????????????? 0000000000000000  ???????????????? |
+
+    swap.1                              [ 0 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    push.8                              [ 8 0 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    u32wrapping_mul                     [ 0 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    u32shr                              [ 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 4000eh 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    drop                                [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    push.255                            [ 255 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    u32and                              [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 0 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    neq                                 [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    if.true
+        (SKIPPING)
+    else
+        push.1114148                    [ 110024h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32divmod.4                     [ 0 44009h 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 44009h 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        nop                             [ 44009h 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        exec.::intrinsics::mem::load_sw
+            (SKIPPING)
+
+| 00044008:  0000000000100000 0000000000000000  ????????????????  ???????????????? |
+
+        nop                             [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        nop                             [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        exec.::miden:cm-types/cm-types@0.1.0::cm_types::__wasm_call_ctors
+            (SKIPPING)
+        nop                             [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        push.1                          [ 1 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        push.1048632                    [ 100038h 1 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        movup.2                         [ 0 100038h 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32wrapping_add                 [ 100038h 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32divmod.4                     [ 0 4000eh 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        dup.0                           [ 4000eh 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        mem_load                        [ 0 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+
+| 0004000c:   ????????????????  ???????????????? 0000000000000000  ???????????????? |
+
+        dup.2                           [ 0 0 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        push.8                          [ 8 0 0 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32wrapping_mul                 [ 0 0 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        push.255                        [ 255 0 0 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 0 255 0 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32shl                          [ 0 255 0 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32not                          [ ffffff00h 0 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 0 ffffff00h 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32and                          [ 0 4000eh 0 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        movup.3                         [ 1 0 4000eh 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        movup.3                         [ 0 1 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        push.8                          [ 8 0 1 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32wrapping_mul                 [ 0 1 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32shl                          [ 1 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        u32or                           [ 1 0 4000eh 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 4000eh 1 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+        mem_store                       [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    end
+RETURN TO miden:cm-types/cm-types@0.1.0::cm_types::miden:cm-types/cm-types@0.1.0#func-result-small }}}
+
+
+| 0004000c:   ????????????????  ???????????????? 0000000000000001  ???????????????? |
+
+    nop                                 [ 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    movdn.2                             [ 0 33 0 fffech fffe0h ffff0h 0 0 ... ]
+    drop                                [ 33 0 fffech fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 33 0 fffech fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 0 33 0 fffech fffe0h ffff0h 0 0 ... ]
+    movup.3                             [ 0 0 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    eq                                  [ 1 0 33 fffech fffe0h ffff0h 0 0 ... ]
+    neq                                 [ 1 33 fffech fffe0h ffff0h 0 0 ... ]
+    dup.0                               [ 1 1 33 fffech fffe0h ffff0h 0 0 ... ]
+    if.true
+        push.4294246400                 [ fff50000h 1 33 fffech fffe0h ffff0h 0 0 ... ]
+        push.16                         [ 16 fff50000h 1 33 fffech fffe0h ffff0h 0 0 ... ]
+        movup.3                         [ 33 16 fff50000h 1 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 16 33 fff50000h 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32shl                          [ 210000h fff50000h 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32wrapping_add                 [ 160000h 1 fffech fffe0h ffff0h 0 0 ... ]
+    else
+        (SKIPPING)
+    end
+    push.0                              [ 0 160000h 1 fffech fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 0 160000h 1 fffech fffe0h ffff0h 0 0 ... ]
+    push.1                              [ 1 0 0 160000h 1 fffech fffe0h ffff0h 0 0 ... ]
+    push.1                              [ 1 1 0 0 160000h 1 fffech fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 1 1 0 0 160000h 1 fffech fffe0h ffff0h 0 0 ... ]
+    movup.6                             [ 1 0 1 1 0 0 160000h fffech fffe0h ffff0h 0 0 ... ]
+    cdrop                               [ 0 1 0 0 160000h fffech fffe0h ffff0h 0 0 ... ]
+    dup.4                               [ 160000h 0 1 0 0 160000h fffech fffe0h ffff0h 0 0 ... ]
+    u32or                               [ 160000h 1 0 0 160000h fffech fffe0h ffff0h 0 0 ... ]
+    u32and                              [ 0 0 0 160000h fffech fffe0h ffff0h 0 0 ... ]
+    eq                                  [ 1 0 160000h fffech fffe0h ffff0h 0 0 ... ]
+    neq                                 [ 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+    dup.0                               [ 1 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+    if.true
+        push.1114148                    [ 110024h 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        u32divmod.4                     [ 0 44009h 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 44009h 0 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        nop                             [ 44009h 0 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        exec.::intrinsics::mem::load_sw
+            (SKIPPING)
+
+| 00044008:  0000000000100000 0000000000000000  ????????????????  ???????????????? |
+
+        nop                             [ 0 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        push.2                          [ 2 0 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        push.1048600                    [ 100018h 2 0 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        movup.2                         [ 0 100018h 2 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        u32wrapping_add                 [ 100018h 2 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        add                             [ 10001ah 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        u32assert                       [ 10001ah 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        push.2                          [ 2 10001ah 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        dup.1                           [ 10001ah 2 10001ah 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 2 10001ah 10001ah 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        u32mod                          [ 0 10001ah 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        u32assert                       [ 0 10001ah 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        assertz                         [ 10001ah 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        push.16                         [ 16 10001ah 1 160000h fffech fffe0h ffff0h 0 0 ... ]
+        movup.3                         [ 160000h 16 10001ah 1 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 16 160000h 10001ah 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32shr                          [ 0 22 10001ah 1 fffech fffe0h ffff0h 0 0 ... ]
+        push.65535                      [ ffffh 22 10001ah 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32and                          [ 22 10001ah 1 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 10001ah 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32divmod.4                     [ 2 40006h 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        dup.0                           [ 40006h 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        mem_load                        [ 0 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+
+| 00040004:   ????????????????  ???????????????? 0000000000000000  ???????????????? |
+
+        dup.2                           [ 2 0 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        push.8                          [ 8 2 0 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32wrapping_mul                 [ 16 0 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        push.65535                      [ ffffh 16 0 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 16 ffffh 0 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32shl                          [ ffff0000h 0 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32not                          [ ffffh 0 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 0 ffffh 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32and                          [ 0 40006h 2 22 1 fffech fffe0h ffff0h 0 0 ... ]
+        movup.3                         [ 22 0 40006h 2 1 fffech fffe0h ffff0h 0 0 ... ]
+        movup.3                         [ 2 22 0 40006h 1 fffech fffe0h ffff0h 0 0 ... ]
+        push.8                          [ 8 2 22 0 40006h 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32wrapping_mul                 [ 16 22 0 40006h 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32shl                          [ 0 160000h 0 40006h 1 fffech fffe0h ffff0h 0 0 ... ]
+        u32or                           [ 160000h 40006h 1 fffech fffe0h ffff0h 0 0 ... ]
+        swap.1                          [ 40006h 160000h 1 fffech fffe0h ffff0h 0 0 ... ]
+        mem_store                       [ 1 fffech fffe0h ffff0h 0 0 ... ]
+    else
+        (SKIPPING)
+    end
+
+| 00040004:   ????????????????  ???????????????? 0000000000160000  ???????????????? |
+
+    push.1114148                        [ 110024h 1 fffech fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 44009h 1 fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 44009h 0 1 fffech fffe0h ffff0h 0 0 ... ]
+    nop                                 [ 44009h 0 1 fffech fffe0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::load_sw
+        (SKIPPING)
+
+| 00044008:  0000000000100000 0000000000000000  ????????????????  ???????????????? |
+
+    nop                                 [ 0 1 fffech fffe0h ffff0h 0 0 ... ]
+    push.1048600                        [ 100018h 0 1 fffech fffe0h ffff0h 0 0 ... ]
+    u32wrapping_add                     [ 100018h 1 fffech fffe0h ffff0h 0 0 ... ]
+    push.1                              [ 1 100018h 1 fffech fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 1 100018h 1 fffech fffe0h ffff0h 0 0 ... ]
+    movup.3                             [ 1 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+    cdrop                               [ 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    push.255                            [ 255 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32and                              [ 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ 100018h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 40006h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    dup.0                               [ 40006h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    mem_load                            [ 160000h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+
+| 00040004:   ????????????????  ???????????????? 0000000000160000  ???????????????? |
+
+    dup.2                               [ 0 160000h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    push.8                              [ 8 0 160000h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32wrapping_mul                     [ 0 160000h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    push.255                            [ 255 0 160000h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 0 255 160000h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32shl                              [ 255 160000h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32not                              [ ffffff00h 160000h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 160000h ffffff00h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32and                              [ 160000h 40006h 0 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    movup.3                             [ 0 160000h 40006h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    movup.3                             [ 0 0 160000h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    push.8                              [ 8 0 0 160000h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32wrapping_mul                     [ 0 0 160000h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32shl                              [ 0 0 160000h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32or                               [ 160000h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 40006h 160000h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    mem_store                           [ 100018h fffech fffe0h ffff0h 0 0 ... ]
+RETURN TO miden:cm-types/cm-types@0.1.0::func-result-small }}}
+
+
+| 00040004:   ????????????????  ???????????????? 0000000000160000  ???????????????? |
+
+    nop                                 [ 100018h fffech fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ 100018h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32wrapping_add                     [ 100018h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 40006h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    nop                                 [ 40006h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::load_sw
+        (SKIPPING)
+
+| 00040004:   ????????????????  ???????????????? 0000000000160000  ???????????????? |
+
+    nop                                 [ 160000h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    push.4                              [ 4 160000h 100018h fffech fffe0h ffff0h 0 0 ... ]
+    movup.2                             [ 100018h 4 160000h fffech fffe0h ffff0h 0 0 ... ]
+    u32wrapping_add                     [ 10001ch 160000h fffech fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 40007h 160000h fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 40007h 0 160000h fffech fffe0h ffff0h 0 0 ... ]
+    nop                                 [ 40007h 0 160000h fffech fffe0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::load_sw
+        (SKIPPING)
+
+| 00040004:   ????????????????  ???????????????? 0000000000160000 0000000000000000 |
+
+    nop                                 [ 0 160000h fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 160000h 0 fffech fffe0h ffff0h 0 0 ... ]
+    exec.::std::sys::truncate_stack
+        (SKIPPING)
+RETURN TO miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small::wit_import2 }}}
+
+    nop                                 [ 160000h 0 fffech fffe0h ffff0h 0 0 ... ]
+    push.0                              [ 0 160000h 0 fffech fffe0h ffff0h 0 0 ... ]
+    dup.3                               [ fffech 0 160000h 0 fffech fffe0h ffff0h 0 0 ... ]
+    u32wrapping_add                     [ fffech 160000h 0 fffech fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 3fffbh 160000h 0 fffech fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffbh 0 160000h 0 fffech fffe0h ffff0h 0 0 ... ]
+    nop                                 [ 3fffbh 0 160000h 0 fffech fffe0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::store_sw
+        (SKIPPING)
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000160000 |
+
+    nop                                 [ 0 fffech fffe0h ffff0h 0 0 ... ]
+    push.4                              [ 4 0 fffech fffe0h ffff0h 0 0 ... ]
+    movup.2                             [ fffech 4 0 fffe0h ffff0h 0 0 ... ]
+    u32wrapping_add                     [ ffff0h 0 fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 3fffch 0 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffch 0 0 fffe0h ffff0h 0 0 ... ]
+    nop                                 [ 3fffch 0 0 fffe0h ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::store_sw
+        (SKIPPING)
+
+| 0003fffc:  0000000000000000 0000000000000000 0000000000000000 0000000000000021 |
+
+    nop                                 [ fffe0h ffff0h 0 0 ... ]
+RETURN TO miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small }}}
+
+    nop                                 [ fffe0h ffff0h 0 0 ... ]
+    push.14                             [ 14 fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ fffe0h 14 fffe0h ffff0h 0 0 ... ]
+    add                                 [ fffeeh fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ fffeeh fffe0h ffff0h 0 0 ... ]
+    push.2                              [ 2 fffeeh fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ fffeeh 2 fffeeh fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 2 fffeeh fffeeh fffe0h ffff0h 0 0 ... ]
+    u32mod                              [ 0 fffeeh fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ 0 fffeeh fffe0h ffff0h 0 0 ... ]
+    assertz                             [ fffeeh fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 2 3fffbh fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffbh 2 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 2 3fffbh fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ 3fffbh 2 3fffbh fffe0h ffff0h 0 0 ... ]
+    mem_load                            [ 160000h 2 3fffbh fffe0h ffff0h 0 0 ... ]
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000160000 |
+
+    swap.1                              [ 2 160000h 3fffbh fffe0h ffff0h 0 0 ... ]
+    push.8                              [ 8 2 160000h 3fffbh fffe0h ffff0h 0 0 ... ]
+    u32wrapping_mul                     [ 16 160000h 3fffbh fffe0h ffff0h 0 0 ... ]
+    u32shr                              [ 22 3fffbh fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffbh 22 fffe0h ffff0h 0 0 ... ]
+    drop                                [ 22 fffe0h ffff0h 0 0 ... ]
+    push.65535                          [ ffffh 22 fffe0h ffff0h 0 0 ... ]
+    u32and                              [ 22 fffe0h ffff0h 0 0 ... ]
+    push.14                             [ 14 22 fffe0h ffff0h 0 0 ... ]
+    dup.2                               [ fffe0h 14 22 fffe0h ffff0h 0 0 ... ]
+    add                                 [ fffeeh 22 fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ fffeeh 22 fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 2 3fffbh 22 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffbh 2 22 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 2 3fffbh 22 fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ 3fffbh 2 3fffbh 22 fffe0h ffff0h 0 0 ... ]
+    mem_load                            [ 160000h 2 3fffbh 22 fffe0h ffff0h 0 0 ... ]
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000160000 |
+
+    swap.1                              [ 2 160000h 3fffbh 22 fffe0h ffff0h 0 0 ... ]
+    push.8                              [ 8 2 160000h 3fffbh 22 fffe0h ffff0h 0 0 ... ]
+    u32wrapping_mul                     [ 16 160000h 3fffbh 22 fffe0h ffff0h 0 0 ... ]
+    u32shr                              [ 22 3fffbh 22 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffbh 22 22 fffe0h ffff0h 0 0 ... ]
+    drop                                [ 22 22 fffe0h ffff0h 0 0 ... ]
+    push.255                            [ 255 22 22 fffe0h ffff0h 0 0 ... ]
+    u32and                              [ 22 22 fffe0h ffff0h 0 0 ... ]
+    push.12                             [ 12 22 22 fffe0h ffff0h 0 0 ... ]
+    dup.3                               [ fffe0h 12 22 22 fffe0h ffff0h 0 0 ... ]
+    add                                 [ fffech 22 22 fffe0h ffff0h 0 0 ... ]
+    u32assert                           [ fffech 22 22 fffe0h ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 3fffbh 22 22 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffbh 0 22 22 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 0 3fffbh 22 22 fffe0h ffff0h 0 0 ... ]
+    dup.1                               [ 3fffbh 0 3fffbh 22 22 fffe0h ffff0h 0 0 ... ]
+    mem_load                            [ 160000h 0 3fffbh 22 22 fffe0h ffff0h 0 0 ... ]
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000160000 |
+
+    swap.1                              [ 0 160000h 3fffbh 22 22 fffe0h ffff0h 0 0 ... ]
+    push.8                              [ 8 0 160000h 3fffbh 22 22 fffe0h ffff0h 0 0 ... ]
+    u32wrapping_mul                     [ 0 160000h 3fffbh 22 22 fffe0h ffff0h 0 0 ... ]
+    u32shr                              [ 160000h 3fffbh 22 22 fffe0h ffff0h 0 0 ... ]
+    swap.1                              [ 3fffbh 160000h 22 22 fffe0h ffff0h 0 0 ... ]
+    drop                                [ 160000h 22 22 fffe0h ffff0h 0 0 ... ]
+    push.255                            [ 255 160000h 22 22 fffe0h ffff0h 0 0 ... ]
+    u32and                              [ 0 22 22 fffe0h ffff0h 0 0 ... ]
+    push.16                             [ 16 0 22 22 fffe0h ffff0h 0 0 ... ]
+    movup.4                             [ fffe0h 16 0 22 22 ffff0h 0 0 ... ]
+    u32wrapping_add                     [ ffff0h 0 22 22 ffff0h 0 0 ... ]
+    push.1114144                        [ 110020h ffff0h 0 22 22 ffff0h 0 0 ... ]
+    u32divmod.4                         [ 0 44008h ffff0h 0 22 22 ffff0h 0 0 ... ]
+    swap.1                              [ 44008h 0 ffff0h 0 22 22 ffff0h 0 0 ... ]
+    nop                                 [ 44008h 0 ffff0h 0 22 22 ffff0h 0 0 ... ]
+    exec.::intrinsics::mem::store_sw
+        (SKIPPING)
+
+| 00044008:  00000000000ffff0 0000000000000000  ????????????????  ???????????????? |
+
+    nop                                 [ 0 22 22 ffff0h 0 0 ... ]
+    push.0                              [ 0 0 22 22 ffff0h 0 0 ... ]
+    dup.1                               [ 0 0 0 22 22 ffff0h 0 0 ... ]
+    neq                                 [ 0 0 22 22 ffff0h 0 0 ... ]
+    push.16                             [ 16 0 0 22 22 ffff0h 0 0 ... ]
+    movup.4                             [ 22 16 0 0 22 ffff0h 0 0 ... ]
+    swap.1                              [ 16 22 0 0 22 ffff0h 0 0 ... ]
+    u32shl                              [ 160000h 0 0 22 ffff0h 0 0 ... ]
+    push.8                              [ 8 160000h 0 0 22 ffff0h 0 0 ... ]
+    movup.4                             [ 22 8 160000h 0 0 ffff0h 0 0 ... ]
+    swap.1                              [ 8 22 160000h 0 0 ffff0h 0 0 ... ]
+    u32shl                              [ 0 1600h 160000h 0 0 ffff0h 0 0 ... ]
+    push.0                              [ 0 1600h 160000h 0 0 ffff0h 0 0 ... ]
+    movup.4                             [ 0 0 1600h 160000h 0 ffff0h 0 0 ... ]
+    neq                                 [ 0 1600h 160000h 0 ffff0h 0 0 ... ]
+    cdrop                               [ 160000h 0 ffff0h 0 0 ... ]
+    u32or                               [ 160000h ffff0h 0 0 ... ]
+RETURN TO miden:base/note-script@1.0.0::cm_types_script::miden:base/note-script@1.0.0#run }}}
+
+    nop                                 [ 160000h ffff0h 0 0 ... ]
+    push.0                              [ 0 160000h ffff0h 0 0 ... ]
+    push.255                            [ 255 0 160000h ffff0h 0 0 ... ]
+    dup.2                               [ 160000h 255 0 160000h ffff0h 0 0 ... ]
+    u32and                              [ 0 0 160000h ffff0h 0 0 ... ]
+    neq                                 [ 0 160000h ffff0h 0 0 ... ]
+    if.true
+        (SKIPPING)
+    else
+        push.0                          [ 0 160000h ffff0h 0 0 ... ]
+        push.1441792                    [ 160000h 0 160000h ffff0h 0 0 ... ]
+        push.4294901760                 [ ffff0000h 160000h 0 160000h ffff0h 0 0 ... ]
+        movup.3                         [ 160000h ffff0000h 160000h 0 ffff0h 0 0 ... ]
+        u32and                          [ 160000h 160000h 0 ffff0h 0 0 ... ]
+        neq                             [ 0 0 ffff0h 0 0 ... ]
+        neq                             [ 0 ffff0h 0 0 ... ]
+        if.true
+            (SKIPPING)
+        else
+            dup.0                       [ ffff0h ffff0h 0 0 ... ]
+            push.8                      [ 8 ffff0h ffff0h 0 0 ... ]
+            dup.1                       [ ffff0h 8 ffff0h ffff0h 0 0 ... ]
+            swap.1                      [ 8 ffff0h ffff0h ffff0h 0 0 ... ]
+            u32mod                      [ 0 ffff0h ffff0h 0 0 ... ]
+            u32assert                   [ 0 ffff0h ffff0h 0 0 ... ]
+            assertz                     [ ffff0h ffff0h 0 0 ... ]
+            push.1                      [ 1 ffff0h ffff0h 0 0 ... ]
+            push.44                     [ 44 1 ffff0h ffff0h 0 0 ... ]
+            movup.2                     [ ffff0h 44 1 ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 3fffch 44 1 ffff0h 0 0 ... ]
+            swap.1                      [ 3fffch 0 44 1 ffff0h 0 0 ... ]
+            nop                         [ 3fffch 0 44 1 ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::store_dw
+                (SKIPPING)
+
+| 0003fffc:  000000000000002c 0000000000000001 0000000000000000 0000000000000021 |
+
+            nop                         [ ffff0h 0 0 ... ]
+            dup.0                       [ ffff0h ffff0h 0 0 ... ]
+            nop                         [ ffff0h ffff0h 0 0 ... ]
+            exec.::miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small
+
+ENTERING miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small {{{
+            push.1114144                [ 110020h ffff0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 44008h ffff0h ffff0h 0 0 ... ]
+            swap.1                      [ 44008h 0 ffff0h ffff0h 0 0 ... ]
+            nop                         [ 44008h 0 ffff0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::load_sw
+                (SKIPPING)
+
+| 00044008:  00000000000ffff0 0000000000000000  ????????????????  ???????????????? |
+
+            nop                         [ ffff0h ffff0h ffff0h 0 0 ... ]
+            push.16                     [ 16 ffff0h ffff0h ffff0h 0 0 ... ]
+            u32wrapping_sub             [ fffe0h ffff0h ffff0h 0 0 ... ]
+            push.1114144                [ 110020h fffe0h ffff0h ffff0h 0 0 ... ]
+            dup.1                       [ fffe0h 110020h fffe0h ffff0h ffff0h 0 0 ... ]
+            swap.1                      [ 110020h fffe0h fffe0h ffff0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 44008h fffe0h fffe0h ffff0h ffff0h 0 0 ... ]
+            swap.1                      [ 44008h 0 fffe0h fffe0h ffff0h ffff0h 0 0 ... ]
+            nop                         [ 44008h 0 fffe0h fffe0h ffff0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::store_sw
+                (SKIPPING)
+
+| 00044008:  00000000000fffe0 0000000000000000  ????????????????  ???????????????? |
+
+            nop                         [ fffe0h ffff0h ffff0h 0 0 ... ]
+            dup.1                       [ ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+            push.4                      [ 4 ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+            dup.1                       [ ffff0h 4 ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+            swap.1                      [ 4 ffff0h ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+            u32mod                      [ 0 ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+            u32assert                   [ 0 ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+            assertz                     [ ffff0h fffe0h ffff0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 3fffch fffe0h ffff0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffch 0 fffe0h ffff0h ffff0h 0 0 ... ]
+            nop                         [ 3fffch 0 fffe0h ffff0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::load_sw
+                (SKIPPING)
+
+| 0003fffc:  000000000000002c 0000000000000001 0000000000000000 0000000000000021 |
+
+            nop                         [ 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            push.8                      [ 8 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            dup.3                       [ ffff0h 8 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            add                         [ ffff8h 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            u32assert                   [ ffff8h 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            push.8                      [ 8 ffff8h 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            dup.1                       [ ffff8h 8 ffff8h 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            swap.1                      [ 8 ffff8h ffff8h 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            u32mod                      [ 0 ffff8h 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            u32assert                   [ 0 ffff8h 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            assertz                     [ ffff8h 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 3fffeh 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffeh 0 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            nop                         [ 3fffeh 0 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::load_dw
+                (SKIPPING)
+
+| 0003fffc:  000000000000002c 0000000000000001 0000000000000000 0000000000000021 |
+
+            nop                         [ 0 33 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            push.4                      [ 4 0 33 44 fffe0h ffff0h ffff0h 0 0 ... ]
+            movup.5                     [ ffff0h 4 0 33 44 fffe0h ffff0h 0 0 ... ]
+            add                         [ ffff4h 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ ffff4h 0 33 44 fffe0h ffff0h 0 0 ... ]
+            push.4                      [ 4 ffff4h 0 33 44 fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ ffff4h 4 ffff4h 0 33 44 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 4 ffff4h ffff4h 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32mod                      [ 0 ffff4h 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ 0 ffff4h 0 33 44 fffe0h ffff0h 0 0 ... ]
+            assertz                     [ ffff4h 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 3fffdh 0 33 44 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffdh 0 0 33 44 fffe0h ffff0h 0 0 ... ]
+            nop                         [ 3fffdh 0 0 33 44 fffe0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::load_sw
+                (SKIPPING)
+
+| 0003fffc:  000000000000002c 0000000000000001 0000000000000000 0000000000000021 |
+
+            nop                         [ 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            push.12                     [ 12 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            dup.5                       [ fffe0h 12 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            add                         [ fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            push.4                      [ 4 fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ fffech 4 fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 4 fffech fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32mod                      [ 0 fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ 0 fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            assertz                     [ fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ fffech 0 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 3fffbh 0 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffbh 0 0 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            nop                         [ 3fffbh 0 0 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::store_sw
+                (SKIPPING)
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000000000 |
+
+            nop                         [ 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            push.12                     [ 12 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            dup.5                       [ fffe0h 12 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32wrapping_add             [ fffech 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            dup.0                       [ 1 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            push.2147483648             [ 80000000h 1 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            u32and                      [ 0 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            eq.2147483648               [ 0 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 0 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            push.4294967295             [ ffffffffh 0 0 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            movup.2                     [ 0 ffffffffh 0 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            cdrop                       [ 0 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 0 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            dup.6                       [ 44 0 0 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            neq                         [ 1 0 1 fffech 0 33 44 fffe0h ffff0h 0 0 ... ]
+            movup.3                     [ fffech 1 0 1 0 33 44 fffe0h ffff0h 0 0 ... ]
+            movdn.5                     [ 1 0 1 0 33 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movup.4                     [ 33 1 0 1 0 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movup.4                     [ 0 33 1 0 1 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movdn.4                     [ 33 1 0 1 0 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movdn.4                     [ 1 0 1 0 33 fffech 44 fffe0h ffff0h 0 0 ... ]
+            dup.0                       [ 1 1 0 1 0 33 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movdn.5                     [ 1 0 1 0 33 1 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movup.3                     [ 0 1 0 1 33 1 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movup.2                     [ 0 0 1 1 33 1 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movup.5                     [ 1 0 0 1 1 33 fffech 44 fffe0h ffff0h 0 0 ... ]
+            cdrop                       [ 0 1 1 33 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movdn.3                     [ 1 1 33 0 fffech 44 fffe0h ffff0h 0 0 ... ]
+            cdrop                       [ 1 0 fffech 44 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 0 1 fffech 44 fffe0h ffff0h 0 0 ... ]
+            movup.3                     [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            nop                         [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            exec.::miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small::wit_import2
+
+ENTERING miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small::wit_import2 {{{
+            nop                         [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            call.::miden:cm-types/cm-types@0.1.0::func-result-small
+
+ENTERING miden:cm-types/cm-types@0.1.0::func-result-small {{{
+            exec.::miden:cm-types/cm-types@0.1.0::init
+
+ENTERING miden:cm-types/cm-types@0.1.0::init {{{
+            push.1179648                [ 120000h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::heap_init
+                (SKIPPING)
+
+| 00120000:   ????????????????  ????????????????  ????????????????  ???????????????? |
+
+            push.[7151114677254663075,2479465529008640040,14770310489219921016,265821343982190061]
+                                        [ ccfaaf222c2df478h 2268d4c30962d028h 633ddce925d8aba3h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            adv.push_mapval             [ 3b0631a9dc67dedh ccfaaf222c2df478h 2268d4c30962d028h 633ddce925d8aba3h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            push.262144                 [ 40000h 3b0631a9dc67dedh ccfaaf222c2df478h 2268d4c30962d028h 633ddce925d8aba3h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            push.2                      [ 2 40000h 3b0631a9dc67dedh ccfaaf222c2df478h 2268d4c30962d028h 633ddce925d8aba3h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            exec.::std::mem::pipe_preimage_to_memory
+                (SKIPPING)
+            drop                        [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            push.1048576                [ 100000h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ 100000h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            mem_store.278536            [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+
+| 00100000:   ????????????????  ????????????????  ????????????????  ???????????????? |
+
+            push.0                      [ 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            mem_store.278537            [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+RETURN TO miden:cm-types/cm-types@0.1.0::func-result-small }}}
+
+
+| 00000000:   ????????????????  ????????????????  ????????????????  ???????????????? |
+
+            nop                         [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            exec.::miden:cm-types/cm-types@0.1.0::cm_types::miden:cm-types/cm-types@0.1.0#func-result-small
+
+ENTERING miden:cm-types/cm-types@0.1.0::cm_types::miden:cm-types/cm-types@0.1.0#func-result-small {{{
+            nop                         [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            exec.::miden:cm-types/cm-types@0.1.0::cm_types::wit_bindgen::rt::run_ctors_once
+
+ENTERING miden:cm-types/cm-types@0.1.0::cm_types::wit_bindgen::rt::run_ctors_once {{{
+            push.1114148                [ 110024h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 44009h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 44009h 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            nop                         [ 44009h 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::load_sw
+                (SKIPPING)
+
+| 00044008:  0000000000100000 0000000000000000  ????????????????  ???????????????? |
+
+            nop                         [ 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            push.1048632                [ 100038h 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            u32wrapping_add             [ 100038h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 4000eh 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ 4000eh 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+WARNING: memory mismatch at addr 4000e:
+  Expecting 0, found 1
+            mem_load                    [ 0 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+
+| 0004000c:   ????????????????  ???????????????? 0000000000000001  ???????????????? |
+
+            swap.1                      [ 0 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            push.8                      [ 8 0 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            u32wrapping_mul             [ 0 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            u32shr                      [ 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 4000eh 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            drop                        [ 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            push.255                    [ 255 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            u32and                      [ 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 0 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            neq                         [ 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            if.true
+                (SKIPPING)
+            else
+                push.1114148            [ 110024h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32divmod.4             [ 0 44009h 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 44009h 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                nop                     [ 44009h 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                exec.::intrinsics::mem::load_sw
+                    (SKIPPING)
+
+| 00044008:  0000000000100000 0000000000000000  ????????????????  ???????????????? |
+
+                nop                     [ 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                nop                     [ 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                exec.::miden:cm-types/cm-types@0.1.0::cm_types::__wasm_call_ctors
+                    (SKIPPING)
+                nop                     [ 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                push.1                  [ 1 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                push.1048632            [ 100038h 1 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                movup.2                 [ 0 100038h 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32wrapping_add         [ 100038h 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32divmod.4             [ 0 4000eh 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                dup.0                   [ 4000eh 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+WARNING: memory mismatch at addr 4000e:
+  Expecting 0, found 1
+                mem_load                [ 0 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+
+| 0004000c:   ????????????????  ???????????????? 0000000000000001  ???????????????? |
+
+                dup.2                   [ 0 0 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                push.8                  [ 8 0 0 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32wrapping_mul         [ 0 0 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                push.255                [ 255 0 0 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 0 255 0 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32shl                  [ 0 255 0 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32not                  [ ffffff00h 0 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 0 ffffff00h 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32and                  [ 0 4000eh 0 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                movup.3                 [ 1 0 4000eh 0 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                movup.3                 [ 0 1 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                push.8                  [ 8 0 1 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32wrapping_mul         [ 0 1 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32shl                  [ 1 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                u32or                   [ 1 0 4000eh 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 4000eh 1 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                mem_store               [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            end
+RETURN TO miden:cm-types/cm-types@0.1.0::cm_types::miden:cm-types/cm-types@0.1.0#func-result-small }}}
+
+
+| 0004000c:   ????????????????  ???????????????? 0000000000000001  ???????????????? |
+
+            nop                         [ 44 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            movdn.2                     [ 0 1 44 fffech fffe0h ffff0h 0 0 ... ]
+            drop                        [ 1 44 fffech fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 1 44 fffech fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 0 1 44 fffech fffe0h ffff0h 0 0 ... ]
+            movup.3                     [ 44 0 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            eq                          [ 0 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            neq                         [ 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            dup.0                       [ 0 0 1 fffech fffe0h ffff0h 0 0 ... ]
+            if.true
+                (SKIPPING)
+            else
+                push.65280              [ ff00h 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                push.5632               [ 1600h ff00h 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                push.8                  [ 8 1600h ff00h 0 1 fffech fffe0h ffff0h 0 0 ... ]
+                movup.4                 [ 1 8 1600h ff00h 0 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 8 1 1600h ff00h 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32shl                  [ 100h 1600h ff00h 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32wrapping_add         [ 1700h ff00h 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32and                  [ 1700h 0 fffech fffe0h ffff0h 0 0 ... ]
+            end
+            push.0                      [ 0 1700h 0 fffech fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 0 1700h 0 fffech fffe0h ffff0h 0 0 ... ]
+            push.1                      [ 1 0 0 1700h 0 fffech fffe0h ffff0h 0 0 ... ]
+            push.1                      [ 1 1 0 0 1700h 0 fffech fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 1 1 0 0 1700h 0 fffech fffe0h ffff0h 0 0 ... ]
+            movup.6                     [ 0 0 1 1 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+            cdrop                       [ 1 1 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+            dup.4                       [ 1700h 1 1 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+            u32or                       [ 1701h 1 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+            u32and                      [ 1 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+            eq                          [ 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+            neq                         [ 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+            dup.0                       [ 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+            if.true
+                (SKIPPING)
+            else
+                push.1114148            [ 110024h 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+                u32divmod.4             [ 0 44009h 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 44009h 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+                nop                     [ 44009h 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+                exec.::intrinsics::mem::load_sw
+                    (SKIPPING)
+
+| 00044008:  0000000000100000 0000000000000000  ????????????????  ???????????????? |
+
+                nop                     [ 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+                push.8                  [ 8 0 0 1700h fffech fffe0h ffff0h 0 0 ... ]
+                movup.3                 [ 1700h 8 0 0 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 8 1700h 0 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32shr                  [ 23 0 0 fffech fffe0h ffff0h 0 0 ... ]
+                push.255                [ 255 23 0 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32and                  [ 23 0 0 fffech fffe0h ffff0h 0 0 ... ]
+                push.2                  [ 2 23 0 0 fffech fffe0h ffff0h 0 0 ... ]
+                push.1048600            [ 100018h 2 23 0 0 fffech fffe0h ffff0h 0 0 ... ]
+                movup.3                 [ 0 100018h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32wrapping_add         [ 100018h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                add                     [ 10001ah 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32assert               [ 10001ah 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32divmod.4             [ 2 40006h 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                dup.0                   [ 40006h 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+WARNING: memory mismatch at addr 40006:
+  Expecting 0, found 160000
+                mem_load                [ 0 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+
+| 00040004:   ????????????????  ???????????????? 0000000000160000 0000000000000000 |
+
+                dup.2                   [ 2 0 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                push.8                  [ 8 2 0 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32wrapping_mul         [ 16 0 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                push.255                [ 255 16 0 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 16 255 0 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32shl                  [ ff0000h 0 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32not                  [ ff00ffffh 0 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 0 ff00ffffh 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32and                  [ 0 40006h 2 23 0 fffech fffe0h ffff0h 0 0 ... ]
+                movup.3                 [ 23 0 40006h 2 0 fffech fffe0h ffff0h 0 0 ... ]
+                movup.3                 [ 2 23 0 40006h 0 fffech fffe0h ffff0h 0 0 ... ]
+                push.8                  [ 8 2 23 0 40006h 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32wrapping_mul         [ 16 23 0 40006h 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32shl                  [ 170000h 0 40006h 0 fffech fffe0h ffff0h 0 0 ... ]
+                u32or                   [ 170000h 40006h 0 fffech fffe0h ffff0h 0 0 ... ]
+                swap.1                  [ 40006h 170000h 0 fffech fffe0h ffff0h 0 0 ... ]
+                mem_store               [ 0 fffech fffe0h ffff0h 0 0 ... ]
+            end
+
+| 00040004:   ????????????????  ???????????????? 0000000000170000 0000000000000000 |
+
+            push.1114148                [ 110024h 0 fffech fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 44009h 0 fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 44009h 0 0 fffech fffe0h ffff0h 0 0 ... ]
+            nop                         [ 44009h 0 0 fffech fffe0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::load_sw
+                (SKIPPING)
+
+| 00044008:  0000000000100000 0000000000000000  ????????????????  ???????????????? |
+
+            nop                         [ 0 0 fffech fffe0h ffff0h 0 0 ... ]
+            push.1048600                [ 100018h 0 0 fffech fffe0h ffff0h 0 0 ... ]
+            u32wrapping_add             [ 100018h 0 fffech fffe0h ffff0h 0 0 ... ]
+            push.1                      [ 1 100018h 0 fffech fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 1 100018h 0 fffech fffe0h ffff0h 0 0 ... ]
+            movup.3                     [ 0 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            cdrop                       [ 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            push.255                    [ 255 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32and                      [ 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ 100018h 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 40006h 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            dup.0                       [ 40006h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            mem_load                    [ 170000h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+
+| 00040004:   ????????????????  ???????????????? 0000000000170000 0000000000000000 |
+
+            dup.2                       [ 0 170000h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            push.8                      [ 8 0 170000h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32wrapping_mul             [ 0 170000h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            push.255                    [ 255 0 170000h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 0 255 170000h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32shl                      [ 255 170000h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32not                      [ ffffff00h 170000h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 170000h ffffff00h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32and                      [ 170000h 40006h 0 1 100018h fffech fffe0h ffff0h 0 0 ... ]
+            movup.3                     [ 1 170000h 40006h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+            movup.3                     [ 0 1 170000h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            push.8                      [ 8 0 1 170000h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32wrapping_mul             [ 0 1 170000h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32shl                      [ 0 1 170000h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32or                       [ 170001h 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 40006h 170001h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            mem_store                   [ 100018h fffech fffe0h ffff0h 0 0 ... ]
+RETURN TO miden:cm-types/cm-types@0.1.0::func-result-small }}}
+
+
+| 00040004:   ????????????????  ???????????????? 0000000000170001 0000000000000000 |
+
+            nop                         [ 100018h fffech fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ 100018h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32wrapping_add             [ 100018h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 40006h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 40006h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+            nop                         [ 40006h 0 100018h fffech fffe0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::load_sw
+                (SKIPPING)
+
+| 00040004:   ????????????????  ???????????????? 0000000000170001 0000000000000000 |
+
+            nop                         [ 170001h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            push.4                      [ 4 170001h 100018h fffech fffe0h ffff0h 0 0 ... ]
+            movup.2                     [ 100018h 4 170001h fffech fffe0h ffff0h 0 0 ... ]
+            u32wrapping_add             [ 10001ch 170001h fffech fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 40007h 170001h fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 40007h 0 170001h fffech fffe0h ffff0h 0 0 ... ]
+            nop                         [ 40007h 0 170001h fffech fffe0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::load_sw
+                (SKIPPING)
+
+| 00040004:   ????????????????  ???????????????? 0000000000170001 0000000000000000 |
+
+            nop                         [ 0 170001h fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 170001h 0 fffech fffe0h ffff0h 0 0 ... ]
+            exec.::std::sys::truncate_stack
+                (SKIPPING)
+RETURN TO miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small::wit_import2 }}}
+
+            nop                         [ 170001h 0 fffech fffe0h ffff0h 0 0 ... ]
+            push.0                      [ 0 170001h 0 fffech fffe0h ffff0h 0 0 ... ]
+            dup.3                       [ fffech 0 170001h 0 fffech fffe0h ffff0h 0 0 ... ]
+            u32wrapping_add             [ fffech 170001h 0 fffech fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 3fffbh 170001h 0 fffech fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffbh 0 170001h 0 fffech fffe0h ffff0h 0 0 ... ]
+            nop                         [ 3fffbh 0 170001h 0 fffech fffe0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::store_sw
+                (SKIPPING)
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000170001 |
+
+            nop                         [ 0 fffech fffe0h ffff0h 0 0 ... ]
+            push.4                      [ 4 0 fffech fffe0h ffff0h 0 0 ... ]
+            movup.2                     [ fffech 4 0 fffe0h ffff0h 0 0 ... ]
+            u32wrapping_add             [ ffff0h 0 fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 3fffch 0 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffch 0 0 fffe0h ffff0h 0 0 ... ]
+            nop                         [ 3fffch 0 0 fffe0h ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::store_sw
+                (SKIPPING)
+
+| 0003fffc:  0000000000000000 0000000000000001 0000000000000000 0000000000000021 |
+
+            nop                         [ fffe0h ffff0h 0 0 ... ]
+RETURN TO miden:base/note-script@1.0.0::cm_types_script::cm_types_script::bindings::miden::cm_types::cm_types::func_result_small }}}
+
+            nop                         [ fffe0h ffff0h 0 0 ... ]
+            push.14                     [ 14 fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ fffe0h 14 fffe0h ffff0h 0 0 ... ]
+            add                         [ fffeeh fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ fffeeh fffe0h ffff0h 0 0 ... ]
+            push.2                      [ 2 fffeeh fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ fffeeh 2 fffeeh fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 2 fffeeh fffeeh fffe0h ffff0h 0 0 ... ]
+            u32mod                      [ 0 fffeeh fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ 0 fffeeh fffe0h ffff0h 0 0 ... ]
+            assertz                     [ fffeeh fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 2 3fffbh fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffbh 2 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 2 3fffbh fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ 3fffbh 2 3fffbh fffe0h ffff0h 0 0 ... ]
+            mem_load                    [ 170001h 2 3fffbh fffe0h ffff0h 0 0 ... ]
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000170001 |
+
+            swap.1                      [ 2 170001h 3fffbh fffe0h ffff0h 0 0 ... ]
+            push.8                      [ 8 2 170001h 3fffbh fffe0h ffff0h 0 0 ... ]
+            u32wrapping_mul             [ 16 170001h 3fffbh fffe0h ffff0h 0 0 ... ]
+            u32shr                      [ 23 3fffbh fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffbh 23 fffe0h ffff0h 0 0 ... ]
+            drop                        [ 23 fffe0h ffff0h 0 0 ... ]
+            push.65535                  [ ffffh 23 fffe0h ffff0h 0 0 ... ]
+            u32and                      [ 23 fffe0h ffff0h 0 0 ... ]
+            push.14                     [ 14 23 fffe0h ffff0h 0 0 ... ]
+            dup.2                       [ fffe0h 14 23 fffe0h ffff0h 0 0 ... ]
+            add                         [ fffeeh 23 fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ fffeeh 23 fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 2 3fffbh 23 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffbh 2 23 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 2 3fffbh 23 fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ 3fffbh 2 3fffbh 23 fffe0h ffff0h 0 0 ... ]
+            mem_load                    [ 170001h 2 3fffbh 23 fffe0h ffff0h 0 0 ... ]
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000170001 |
+
+            swap.1                      [ 2 170001h 3fffbh 23 fffe0h ffff0h 0 0 ... ]
+            push.8                      [ 8 2 170001h 3fffbh 23 fffe0h ffff0h 0 0 ... ]
+            u32wrapping_mul             [ 16 170001h 3fffbh 23 fffe0h ffff0h 0 0 ... ]
+            u32shr                      [ 23 3fffbh 23 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffbh 23 23 fffe0h ffff0h 0 0 ... ]
+            drop                        [ 23 23 fffe0h ffff0h 0 0 ... ]
+            push.255                    [ 255 23 23 fffe0h ffff0h 0 0 ... ]
+            u32and                      [ 23 23 fffe0h ffff0h 0 0 ... ]
+            push.12                     [ 12 23 23 fffe0h ffff0h 0 0 ... ]
+            dup.3                       [ fffe0h 12 23 23 fffe0h ffff0h 0 0 ... ]
+            add                         [ fffech 23 23 fffe0h ffff0h 0 0 ... ]
+            u32assert                   [ fffech 23 23 fffe0h ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 3fffbh 23 23 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffbh 0 23 23 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 0 3fffbh 23 23 fffe0h ffff0h 0 0 ... ]
+            dup.1                       [ 3fffbh 0 3fffbh 23 23 fffe0h ffff0h 0 0 ... ]
+            mem_load                    [ 170001h 0 3fffbh 23 23 fffe0h ffff0h 0 0 ... ]
+
+| 0003fff8:   ????????????????  ????????????????  ???????????????? 0000000000170001 |
+
+            swap.1                      [ 0 170001h 3fffbh 23 23 fffe0h ffff0h 0 0 ... ]
+            push.8                      [ 8 0 170001h 3fffbh 23 23 fffe0h ffff0h 0 0 ... ]
+            u32wrapping_mul             [ 0 170001h 3fffbh 23 23 fffe0h ffff0h 0 0 ... ]
+            u32shr                      [ 170001h 3fffbh 23 23 fffe0h ffff0h 0 0 ... ]
+            swap.1                      [ 3fffbh 170001h 23 23 fffe0h ffff0h 0 0 ... ]
+            drop                        [ 170001h 23 23 fffe0h ffff0h 0 0 ... ]
+            push.255                    [ 255 170001h 23 23 fffe0h ffff0h 0 0 ... ]
+            u32and                      [ 1 23 23 fffe0h ffff0h 0 0 ... ]
+            push.16                     [ 16 1 23 23 fffe0h ffff0h 0 0 ... ]
+            movup.4                     [ fffe0h 16 1 23 23 ffff0h 0 0 ... ]
+            u32wrapping_add             [ ffff0h 1 23 23 ffff0h 0 0 ... ]
+            push.1114144                [ 110020h ffff0h 1 23 23 ffff0h 0 0 ... ]
+            u32divmod.4                 [ 0 44008h ffff0h 1 23 23 ffff0h 0 0 ... ]
+            swap.1                      [ 44008h 0 ffff0h 1 23 23 ffff0h 0 0 ... ]
+            nop                         [ 44008h 0 ffff0h 1 23 23 ffff0h 0 0 ... ]
+            exec.::intrinsics::mem::store_sw
+                (SKIPPING)
+
+| 00044008:  00000000000ffff0 0000000000000000  ????????????????  ???????????????? |
+
+            nop                         [ 1 23 23 ffff0h 0 0 ... ]
+            push.0                      [ 0 1 23 23 ffff0h 0 0 ... ]
+            dup.1                       [ 1 0 1 23 23 ffff0h 0 0 ... ]
+            neq                         [ 1 1 23 23 ffff0h 0 0 ... ]
+            push.16                     [ 16 1 1 23 23 ffff0h 0 0 ... ]
+            movup.4                     [ 23 16 1 1 23 ffff0h 0 0 ... ]
+            swap.1                      [ 16 23 1 1 23 ffff0h 0 0 ... ]
+            u32shl                      [ 170000h 1 1 23 ffff0h 0 0 ... ]
+            push.8                      [ 8 170000h 1 1 23 ffff0h 0 0 ... ]
+            movup.4                     [ 23 8 170000h 1 1 ffff0h 0 0 ... ]
+            swap.1                      [ 8 23 170000h 1 1 ffff0h 0 0 ... ]
+            u32shl                      [ 0 1700h 170000h 1 1 ffff0h 0 0 ... ]
+            push.0                      [ 0 1700h 170000h 1 1 ffff0h 0 0 ... ]
+            movup.4                     [ 1 0 1700h 170000h 1 ffff0h 0 0 ... ]
+            neq                         [ 1 1700h 170000h 1 ffff0h 0 0 ... ]
+            cdrop                       [ 1700h 1 ffff0h 0 0 ... ]
+            u32or                       [ 1701h ffff0h 0 0 ... ]
+RETURN TO miden:base/note-script@1.0.0::cm_types_script::miden:base/note-script@1.0.0#run }}}
+
+            nop                         [ 1701h ffff0h 0 0 ... ]
+            push.0                      [ 0 1701h ffff0h 0 0 ... ]
+            push.0                      [ 0 0 1701h ffff0h 0 0 ... ]
+            push.255                    [ 255 0 0 1701h ffff0h 0 0 ... ]
+            dup.3                       [ 1701h 255 0 0 1701h ffff0h 0 0 ... ]
+            u32and                      [ 1 0 0 1701h ffff0h 0 0 ... ]
+            eq                          [ 0 0 1701h ffff0h 0 0 ... ]
+            neq                         [ 0 1701h ffff0h 0 0 ... ]
+            if.true
+                (SKIPPING)
+            else
+                push.0                  [ 0 1701h ffff0h 0 0 ... ]
+                push.0                  [ 0 0 1701h ffff0h 0 0 ... ]
+                push.1                  [ 1 0 0 1701h ffff0h 0 0 ... ]
+                dup.3                   [ 1701h 1 0 0 1701h ffff0h 0 0 ... ]
+                u32and                  [ 1 0 0 1701h ffff0h 0 0 ... ]
+                eq                      [ 0 0 1701h ffff0h 0 0 ... ]
+                neq                     [ 0 1701h ffff0h 0 0 ... ]
+                if.true
+                    (SKIPPING)
+                else
+                    push.0              [ 0 1701h ffff0h 0 0 ... ]
+                    push.16896          [ 4200h 0 1701h ffff0h 0 0 ... ]
+                    push.65280          [ ff00h 4200h 0 1701h ffff0h 0 0 ... ]
+                    movup.3             [ 1701h ff00h 4200h 0 ffff0h 0 0 ... ]
+                    u32and              [ 1700h 4200h 0 ffff0h 0 0 ... ]
+                    neq                 [ 1 0 ffff0h 0 0 ... ]
+                    neq                 [ 1 ffff0h 0 0 ... ]
+                    dup.0               [ 1 1 ffff0h 0 0 ... ]
+                    if.true
+                        swap.1          [ ffff0h 1 0 0 ... ]
+                        drop            [ 1 0 0 ... ]
+                    else
+                        (SKIPPING)
+                    end
+                    push.1              [ 1 1 0 0 ... ]
+                    push.0              [ 0 1 1 0 0 ... ]
+                    movup.2             [ 1 0 1 0 0 ... ]
+                    cdrop               [ 0 0 ... ]
+                end
+            end
+        end
+    end
+    push.0                              [ 0 0 ... ]
+    eq                                  [ 1 0 0 ... ]
+    if.true
+        push.0                          [ 0 0 ... ]
+
+END OF TRACE

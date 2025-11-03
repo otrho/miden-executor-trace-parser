@@ -1,0 +1,13 @@
+ENTRY AT root_ns:root@1.0.0::test::main
+    u32divmod.4                         [ 0 44000h 0 0 ... ]
+    swap.1                              [ 44000h 0 0 ... ]
+    nop                                 [ 44000h 0 0 ... ]
+    exec.::intrinsics::mem::load_dw
+        (SKIPPING)
+
+| 00044000:  000000004666ead7 000000007f64d406  ????????????????  ???????????????? |
+
+    nop                                 [ 7f64d406h 4666ead7h 0 0 ... ]
+RETURNED FROM ENTRY POINT
+
+END OF TRACE
