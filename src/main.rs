@@ -52,6 +52,11 @@ fn main() -> anyhow::Result<()> {
         // Synchronise the src mgr with the trace in the case of returning from blocks first.
         if let Some(frame) = srcs.check_leave()? {
             match frame {
+                src_mgr::BlockType::Start => {
+                    println!("RETURNED FROM ENTRY POINT");
+                    break;
+                }
+
                 src_mgr::BlockType::Exec => {
                     println!("RETURN TO {} }}}}}}", srcs.get_src_func_name()?);
                     println!();

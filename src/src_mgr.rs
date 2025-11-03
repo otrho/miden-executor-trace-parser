@@ -11,6 +11,7 @@ pub(crate) struct SourceManager {
 }
 
 pub(crate) enum BlockType {
+    Start,
     Exec,
     TrueBlock,
     FalseBlock,
@@ -24,7 +25,7 @@ impl SourceManager {
             srcs,
             src_block_key: masm::BlockKey::default(),
             pc: 0,
-            call_stack: Vec::default(),
+            call_stack: vec![(BlockType::Start, masm::BlockKey::default(), 0)],
             indent: 0,
         }
     }

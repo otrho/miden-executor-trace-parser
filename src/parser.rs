@@ -16,7 +16,7 @@ pub(crate) fn parse_trace(input: &str) -> anyhow::Result<(SourceBlocks, Vec<Trac
 peg::parser! {
     grammar trace_parser() for str {
         pub rule parse(blocks: &mut SourceBlocks) -> Vec<Trace>
-            = begin_garbage() module(blocks)* between_garbage() traces:trace_item()* end_garbage() {
+            = skip_to_module() module(blocks)* skip_to_trace() traces:trace_item()* {
                 traces
             }
 
@@ -28,23 +28,20 @@ peg::parser! {
             }
 
         rule mod_comment() -> String
-            = "#" _ "mod" _ sym:symbol() {
+            = mod_marker() sym:symbol() {
                 sym.to_string()
             }
+
+        rule skip_to_module()
+            = (!mod_marker() [_])*
+
+        rule mod_marker()
+            = "#" _ "mod" _
 
         rule src_item(blocks: &mut SourceBlocks) -> BlockKey
             = ("export." / "proc.") name:symbol() ops:op(blocks)+ end() {
                 blocks.insert(Block::new(name, ops))
             }
-
-        rule begin_garbage()
-            = (!("#" _ "mod") [_])*
-
-        rule between_garbage()
-            = "test" (!"FAILED" [_])* "FAILED" _ (!trace_marker() [_])*
-
-        rule end_garbage()
-            = "Stack Trace:" [_]*
 
         rule op(blocks: &mut SourceBlocks) -> Op
             = cond_block(blocks)
@@ -76,7 +73,7 @@ peg::parser! {
             = "export" / "proc" / "if" / "else" / "end"
 
         rule trace_item() -> Trace
-            = func:trace_in() exe:trace_executed() stack:trace_stack() step_stack()? {
+            = func:trace_in() exe:trace_executed() stack:trace_stack() trace_locals()* skip_to_trace() {
                 let (_masm_op, op, cycle, total) = exe;
                 Trace { func, op, cycle, total, stack }
             }
@@ -102,10 +99,15 @@ peg::parser! {
                 nums
             }
 
-        rule trace_marker() = "[TRACE executor]" _
+        // Some other trace events we can ignore.  Must not be the ones we care about, but must
+        // still start with [TRACE executor], then skip to the next trace event.
+        rule trace_locals()
+            = !(trace_in() / trace_executed() / trace_stack()) trace_marker() (!trace_marker() [_])*
 
-        rule step_stack()
-            = "[" (!"]" [_])* "]" _ "&step.stack =" _ "[" (!"]" [_])* _ "]" _
+        rule skip_to_trace()
+            = (!trace_marker() [_])*
+
+        rule trace_marker() = "[TRACE executor]" _
 
         rule symbol() -> String
             = s:$(sym_char() (sym_char() / ['0'..='9'])*) _ {
@@ -113,7 +115,7 @@ peg::parser! {
             }
 
         rule sym_char() -> char
-            = quiet!{['a'..='z' | 'A'..='Z' | '.' | '/' | '@' | '_' | '-' | ':' | '#']}
+            = quiet!{['a'..='z' | 'A'..='Z' | '.' | '/' | '@' | '_' | '-' | ':' | '#' | '$']}
 
         rule ident() -> String
             = !keyword() id:$(['a'..='z' | 'A'..='Z' | '0'..='9' | '_']+) _ {
@@ -138,7 +140,6 @@ peg::parser! {
         rule _ = quiet!{(ws() / pkg_spam())*}
 
         rule ws() = [' ' | '\n' | '\r' | '\t']
-        rule pkg_spam() = "Creating Miden package" to_eol()
-        rule to_eol() = (!['\n' | '\r'] [_])*
+        rule pkg_spam() = "Creating Miden package" (!['\n' | '\r'] [_])*
     }
 }
