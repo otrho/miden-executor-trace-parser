@@ -15,7 +15,7 @@ struct Cli {
     entry_func: Option<String>,
 }
 
-const SPACES: &'static str = "                                                                                                    ";
+const SPACES: &str = "                                                                                                    ";
 
 fn spaces(count: usize) -> &'static str {
     &SPACES[0..count]
@@ -154,7 +154,7 @@ fn main() -> anyhow::Result<()> {
         match src_op {
             masm::Op::Op { opcode, arg } => {
                 if opcode == "exec" || opcode == "call" {
-                    print_op(&src_op, func, None, srcs.indent())?;
+                    print_op(src_op, func, None, srcs.indent())?;
 
                     let callee_func_name =
                         &arg.as_ref().expect("CALL/EXEC must have an argument")[2..];
@@ -319,9 +319,8 @@ fn print_op(op: &masm::Op, func: &str, stack: Option<&[u64]>, indent: usize) -> 
         let num_items_to_print = (stack.len() + 2 - nz_idx).min(stack.len());
 
         write!(out_str, "[")?;
-        for idx in 0..num_items_to_print {
-            let el = stack[idx];
-            if el < 256 {
+        for el in stack.iter().take(num_items_to_print) {
+            if *el < 256 {
                 // Decimal.
                 write!(out_str, " {el}")?;
             } else {

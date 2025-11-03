@@ -63,7 +63,7 @@ impl SourceManager {
     }
 
     pub(crate) fn get_src_op(&self) -> &masm::Op {
-        &self.srcs[self.src_block_key].op_at(self.pc)
+        self.srcs[self.src_block_key].op_at(self.pc)
     }
 
     pub(crate) fn next_op(&mut self) {
@@ -116,7 +116,7 @@ impl SourceManager {
         entry_func: &Option<String>,
     ) -> anyhow::Result<String> {
         let block_key = if let Some(entry_func) = entry_func {
-            let entry_funcs = self.fuzzy_find_block_key(&entry_func);
+            let entry_funcs = self.fuzzy_find_block_key(entry_func);
             match entry_funcs.len() {
                 0 => anyhow::bail!("Failed to find requested entry function: {entry_func}"),
                 1 => Ok(entry_funcs[0]),
@@ -132,7 +132,7 @@ impl SourceManager {
                 }
             }
         } else {
-            self.get_entry_func_block_key(&trace).ok_or(anyhow::anyhow!(
+            self.get_entry_func_block_key(trace).ok_or(anyhow::anyhow!(
                 "Failed to determine default entry function."
             ))
         }?;
@@ -155,7 +155,7 @@ impl SourceManager {
             }};
         }
 
-        if let Some(trace::Trace { func, .. }) = trace.get(0) {
+        if let Some(trace::Trace { func, .. }) = trace.first() {
             if func.ends_with("::run") {
                 ret_if_found!(func)
             }
