@@ -114,7 +114,7 @@ impl SourceManager {
         &mut self,
         trace: &[trace::Trace],
         entry_func: &Option<String>,
-    ) -> anyhow::Result<String> {
+    ) -> anyhow::Result<(masm::BlockKey, String)> {
         let block_key = if let Some(entry_func) = entry_func {
             let entry_funcs = self.fuzzy_find_block_key(entry_func);
             match entry_funcs.len() {
@@ -139,7 +139,15 @@ impl SourceManager {
 
         // XXX: This could be re-thought.  A lot of re-fetching and cloning of strings going on.
         self.src_block_key = block_key;
-        Ok(self.srcs[block_key].name().unwrap().clone())
+        Ok((block_key, self.srcs[block_key].name().unwrap().clone()))
+    }
+
+    pub(crate) fn reset_entry(&mut self, entry_block: masm::BlockKey) {
+        self.src_block_key = entry_block;
+        self.pc = 0;
+        self.call_stack
+            .push((BlockType::Start, masm::BlockKey::default(), 0));
+        self.indent = 0;
     }
 
     fn get_entry_func_block_key(&self, trace: &[trace::Trace]) -> Option<masm::BlockKey> {

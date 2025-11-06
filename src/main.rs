@@ -13,6 +13,9 @@ struct Cli {
 
     #[arg(short, long, help("Entry function symbol"))]
     entry_func: Option<String>,
+
+    #[arg(short, long, help("Try again when returning from entry point"))]
+    repeat: bool,
 }
 
 const SPACES: &str = "                                                                                                    ";
@@ -35,7 +38,7 @@ fn main() -> anyhow::Result<()> {
     let mut pending_trace_skip = false;
     let mut pending_print_mem = None;
 
-    let entry_func = srcs.set_entry(&trace, &cli.entry_func)?;
+    let (entry_block, entry_func) = srcs.set_entry(&trace, &cli.entry_func)?;
 
     println!("ENTRY AT {}", srcs.get_src_func_name()?);
 
@@ -48,13 +51,23 @@ fn main() -> anyhow::Result<()> {
 
     srcs.inc_indent();
 
-    loop {
+    'main_loop: loop {
         // Synchronise the src mgr with the trace in the case of returning from blocks first.
         if let Some(frame) = srcs.check_leave()? {
             match frame {
                 src_mgr::BlockType::Start => {
                     println!("RETURNED FROM ENTRY POINT");
-                    break;
+
+                    if cli.repeat && trace_idx < trace.len() {
+                        srcs.reset_entry(entry_block);
+                        pending_trace_skip = true;
+
+                        println!();
+                        println!("ENTRY AT {}", srcs.get_src_func_name()?);
+                        srcs.inc_indent();
+                    } else {
+                        break;
+                    }
                 }
 
                 src_mgr::BlockType::Exec => {
@@ -84,6 +97,11 @@ fn main() -> anyhow::Result<()> {
             loop {
                 perform_mem_io(&mut mem_map, trace.get(trace_idx), trace.get(trace_idx - 1));
                 trace_idx += 1;
+
+                if trace_idx >= trace.len() {
+                    println!("FUNCTION NOT FOUND");
+                    break 'main_loop;
+                }
 
                 let demangled_sym = demangled_symbols
                     .entry(&trace[trace_idx].func)
