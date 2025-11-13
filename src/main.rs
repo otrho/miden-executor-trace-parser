@@ -61,6 +61,7 @@ fn main() -> anyhow::Result<()> {
                     if cli.repeat && trace_idx < trace.len() {
                         srcs.reset_entry(entry_block);
                         pending_trace_skip = true;
+                        mem_map.clear();
 
                         println!();
                         println!("ENTRY AT {}", srcs.get_src_func_name()?);

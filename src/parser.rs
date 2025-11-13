@@ -39,9 +39,14 @@ peg::parser! {
             = "#" _ "mod" _
 
         rule src_item(blocks: &mut SourceBlocks) -> BlockKey
-            = ("export." / "proc.") name:symbol() ops:op(blocks)+ end() {
+            = call_conv()? ("pub" _)? ("export" / "proc") _ name:symbol() skip_to_eol() _
+                ops:op(blocks)+
+              end() {
                 blocks.insert(Block::new(name, ops))
             }
+
+        rule call_conv()
+            = "@callconv" _ skip_in_paren()
 
         rule op(blocks: &mut SourceBlocks) -> Op
             = cond_block(blocks)
@@ -79,7 +84,7 @@ peg::parser! {
             }
 
         rule trace_in() -> String
-            = trace_marker() "in" _ sym:symbol() "(" (!")" [_])* ")" _ {
+            = trace_marker() "in" _ sym:symbol() skip_in_paren() {
                 sym
             }
 
@@ -137,9 +142,18 @@ peg::parser! {
 
         rule end() = "end" _
 
+        rule skip_in_paren()
+            = "(" _  (!")" [_])* ")" _
+
+        rule skip_to_eol()
+            = (!['\n' | '\r'] [_])*
+
         rule _ = quiet!{(ws() / pkg_spam())*}
 
         rule ws() = [' ' | '\n' | '\r' | '\t']
-        rule pkg_spam() = "Creating Miden package" (!['\n' | '\r'] [_])*
+
+        // Might not be a thing any more:
+        rule pkg_spam() = "Creating Miden package" skip_to_eol()
+
     }
 }
